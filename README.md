@@ -1,33 +1,60 @@
-#### 方式 1：裸库迁移
+# 2048 网页游戏
 
-在本地可通过以下命令迁移 全部分支和 TAG 到本仓库，点击创建 [访问令牌](https://cnb.cool/profile/token/create?tpl=git&expired=forever)
+一个经典 2048 数字益智游戏的网页实现版本。
+
+## 游戏介绍
+
+2048 是一款令人上瘾的数字滑动拼图游戏。玩家通过方向键控制滑块，将相同数字的方块合并在一起，努力合成出 2048 这个数字。
+
+## 如何游玩
+
+1. 使用 **方向键**（↑ ↓ ← →）控制所有方块移动
+2. 相同数字的方块碰撞时会合并成更大的数字
+3. 每次移动随机生成一个新的 2 或 4
+4. 当界面上出现 2048 时获胜
+5. 当无法移动时游戏结束
+
+## 功能特性
+
+- 🎮 经典 4×4 网格玩法
+- ⌨️ 键盘方向键控制
+- 💾 自动保存游戏进度
+- 🏆 记录当前分数和最高分
+- 🔄 支持重新开始游戏
+
+## 技术栈
+
+- HTML5
+- CSS3 (SCSS)
+- JavaScript (原生)
+
+## 本地运行
+
+直接在浏览器中打开 `index.html` 文件即可开始游戏。
+
+```bash
+# 或者使用简单的 HTTP 服务器
+python -m http.server 8000
+# 然后访问 http://localhost:8000
+```
+
+## 项目结构
 
 ```
-mkdir empty && cd empty
-git clone --bare https://your-git.com/group/name.git .
-git lfs fetch origin --all
-git push --mirror https://cnb.cool/yangqing/web-game-demo
+.
+├── index.html          # 游戏主页面
+├── js/
+│   ├── game_manager.js      # 游戏核心逻辑
+│   ├── grid.js             # 网格管理
+│   ├── tile.js             # 方块对象
+│   ├── html_actuator.js   # 页面渲染
+│   ├── keyboard_input_manager.js  # 键盘输入
+│   └── local_storage_manager.js # 本地存储
+└── style/
+    ├── main.scss           # 样式文件
+    └── main.css           # 编译后的 CSS
 ```
 
-#### 方式 2：分支迁移
+## 许可证
 
-在本地可通过以下命令迁移 当前分支 到本仓库，点击创建 [访问令牌](https://cnb.cool/profile/token/create?tpl=git&expired=forever)
-
-```
-git remote -v
-git remote add cnb https://cnb.cool/yangqing/web-game-demo
-git remote -v
-git push -u cnb HEAD:main
-```
-
-#### 方式 3：空仓初始化
-
-在本地可通过以下命令创建 全新仓库, 点击创建 [访问令牌](https://cnb.cool/profile/token/create?tpl=git&expired=forever)
-
-```
-git init .
-git remote add origin https://cnb.cool/yangqing/web-game-demo
-git config --local user.name yangqing
-git config --local user.email "yangqing@gitc.cc"
-git config credential.helper store
-```
+MIT License
