@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="网页版贪吃蛇小游戏 - HTML5 Canvas + 原生 JavaScript" />
+  <title>贪吃蛇 · Snake</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 顶部标题栏 -->
+    <header class="header">
+      <h1 class="title"><span class="title-icon">🐍</span> 贪吃蛇</h1>
+      <button id="muteBtn" class="icon-btn" type="button" title="切换音效" aria-label="切换音效">🔊</button>
+    </header>
+
+    <!-- 分数显示区 -->
+    <section class="hud" aria-label="游戏数据">
+      <div class="stat">
+        <span class="stat-label">分数</span>
+        <span class="stat-value" id="score">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">最高分</span>
+        <span class="stat-value" id="highScore">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">等级</span>
+        <span class="stat-value" id="level">1</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">长度</span>
+        <span class="stat-value" id="length">3</span>
+      </div>
+    </section>
+
+    <!-- 游戏画布 + 覆盖层（欢迎 / 暂停 / 结束） -->
+    <main class="board-wrap">
+      <canvas id="board" aria-label="贪吃蛇游戏画布" tabindex="0"></canvas>
+      <div id="overlay" class="overlay" aria-live="polite"></div>
+    </main>
+
+    <!-- 控制按钮 -->
+    <section class="controls" aria-label="游戏控制">
+      <button id="startBtn" class="btn btn-primary" type="button">开始游戏</button>
+      <button id="pauseBtn" class="btn" type="button" disabled>暂停</button>
+      <button id="restartBtn" class="btn btn-danger" type="button">重新开始</button>
+    </section>
+
+    <!-- 游戏规则说明 -->
+    <section class="rules" aria-label="游戏规则">
+      <h2>游戏规则</h2>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <h3>🎮 操作方式</h3>
+          <ul>
+            <li>方向键 <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> 或 <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> 控制移动</li>
+            <li><kbd>空格</kbd> 暂停 / 继续</li>
+            <li>移动端：在画布上滑动屏幕控制方向</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>🍎 计分规则</h3>
+          <ul>
+            <li>吃到普通食物 <b>+10 分</b></li>
+            <li>金色奖励食物 <b>+30 分</b>（限时出现，每吃 5 个食物触发一次）</li>
+            <li>撞墙或咬到自己则游戏结束</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>⚡ 难度递增</h3>
+          <ul>
+            <li>每得 <b>50 分</b>提升 1 级，蛇的移动速度加快</li>
+            <li>最高 10 级，等级越高挑战越大</li>
+            <li>最高分自动保存在本地</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">HTML5 Canvas · 原生 JavaScript 实现</footer>
+  </div>
+
+  <!-- 按依赖顺序加载模块（普通脚本，支持 file:// 直接打开） -->
+  <script src="js/config.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/input.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

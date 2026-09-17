@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="网页版五子棋 - HTML5 Canvas + 原生 JavaScript" />
+  <title>五子棋 · Gomoku</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 顶部标题栏 -->
+    <header class="header">
+      <h1 class="title"><span class="title-icon">⚫</span> 五子棋</h1>
+      <button id="muteBtn" class="icon-btn" type="button" title="切换音效" aria-label="切换音效">🔊</button>
+    </header>
+
+    <!-- 回合指示器 + 战绩 -->
+    <section class="hud" aria-label="对局信息">
+      <div class="turn-card" id="turnCard">
+        <span class="turn-stone" id="turnStone"></span>
+        <div class="turn-text">
+          <span class="turn-label">当前回合</span>
+          <span class="turn-value" id="turnText">黑方</span>
+        </div>
+      </div>
+      <div class="stat">
+        <span class="stat-label">第几手</span>
+        <span class="stat-value" id="moveNo">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">黑方胜</span>
+        <span class="stat-value" id="blackWins">0</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">白方胜</span>
+        <span class="stat-value" id="whiteWins">0</span>
+      </div>
+    </section>
+
+    <!-- 棋盘 + 覆盖层（欢迎 / 暂停 / 结算） -->
+    <main class="board-wrap">
+      <canvas id="board" aria-label="五子棋棋盘" tabindex="0"></canvas>
+      <div id="overlay" class="overlay" aria-live="polite"></div>
+    </main>
+
+    <!-- 控制按钮 -->
+    <section class="controls" aria-label="游戏控制">
+      <button id="undoBtn" class="btn" type="button" disabled>↩ 悔棋</button>
+      <button id="pauseBtn" class="btn" type="button" disabled>⏸ 暂停</button>
+      <button id="restartBtn" class="btn btn-danger" type="button">重新开始</button>
+    </section>
+
+    <!-- 规则说明 -->
+    <section class="rules" aria-label="游戏规则">
+      <h2>游戏规则</h2>
+      <div class="rules-grid">
+        <div class="rule-card">
+          <h3>🎮 操作方式</h3>
+          <ul>
+            <li>点击 / 触摸棋盘交叉点落子</li>
+            <li>桌面端可用 <kbd>方向键</kbd> 移动光标，<kbd>回车</kbd> 落子</li>
+            <li><kbd>Ctrl</kbd>+<kbd>Z</kbd> 悔棋，<kbd>空格</kbd> 暂停</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>⚖️ 胜负规则</h3>
+          <ul>
+            <li>黑棋先行，双方轮流落子</li>
+            <li>横、竖、斜任一方向<b>先连成 5 子</b>者获胜</li>
+            <li>棋盘下满且无人连五则判为平局</li>
+          </ul>
+        </div>
+        <div class="rule-card">
+          <h3>💾 其他</h3>
+          <ul>
+            <li>最近一手有红点标记</li>
+            <li>获胜五连高亮显示</li>
+            <li>双方胜场数自动保存在本地</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">HTML5 Canvas · 原生 JavaScript 实现</footer>
+  </div>
+
+  <!-- 按依赖顺序加载模块（普通脚本，支持 file:// 直接打开） -->
+  <script src="js/config.js"></script>
+  <script src="js/rules.js"></script>
+  <script src="js/sound.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/renderer.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

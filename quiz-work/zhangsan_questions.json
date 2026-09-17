@@ -1,0 +1,192 @@
+[
+  {
+    "id": "q1", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第1题】ArkTS 中常量名、枚举值名推荐的命名是？",
+    "options": ["全小写，下划线分割", "大驼峰", "小驼峰", "全大写，下划线分割"],
+    "answer": 3,
+    "knowledge_point": "ArkTS 编码规范",
+    "explanation": "ArkTS 编码规范：变量名/函数名用小驼峰，类/接口/枚举类型名用大驼峰，常量名与枚举值名用全大写加下划线分割（如 MAX_COUNT）。"
+  },
+  {
+    "id": "q2", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第2题】用哪一种装饰器修饰的组件可作为页面入口组件？",
+    "options": ["@Entry", "@Component", "@Builder", "@Preview"],
+    "answer": 0,
+    "knowledge_point": "ArkUI 页面结构",
+    "explanation": "@Entry 装饰的自定义组件是页面入口组件；@Component 仅声明自定义组件，@Builder 是轻量复用的构建函数，@Preview 供预览器使用。"
+  },
+  {
+    "id": "q3", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第3题】首选项 preferences 值的存储支持哪些数据类型？",
+    "options": ["字符型", "数字型、字符型、布尔型以及这 3 种类型的数组类型", "布尔型", "数字型"],
+    "answer": 1,
+    "knowledge_point": "数据持久化 preferences",
+    "explanation": "Preferences 仅支持 number、string、boolean 及这三者的数组类型，key 为字符串，值以原始类型存储。"
+  },
+  {
+    "id": "q4", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第4题】使用 http 发起网络请求，需要以下哪种权限？",
+    "options": ["ohos.permission.USE_BLUETOOTH", "ohos.permission.INTERNET", "ohos.permission.LOCATION", "ohos.permission.REQUIRE_FORM"],
+    "answer": 1,
+    "knowledge_point": "权限管理",
+    "explanation": "网络请求需申请 ohos.permission.INTERNET 权限，在 module.json5 的 requestPermissions 中声明。"
+  },
+  {
+    "id": "q6", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第6题】关于 Resource 资源引用类型，描述错误的是：",
+    "options": [
+      "Resource 是资源引用类型，用于设置组件属性的值。",
+      "通过 $r('app.type.name') 形式引用应用内 resources 目录定义的资源，app 代表定义位置，type 代表资源类型。",
+      "Resource 支持所有的数据类型。",
+      "系统可根据当前配置加载合适的 Resource 资源，如按屏幕尺寸呈现不同布局、按语言提供不同字符串。"
+    ],
+    "answer": 2,
+    "knowledge_point": "资源引用 Resource",
+    "explanation": "Resource 只支持字符串、图片、颜色等预定义的资源类型，并非支持所有数据类型，故 C 错误；A、B、D 均为官方文档的正确描述。"
+  },
+  {
+    "id": "q7", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第7题】向服务器提交表单数据，以下哪种请求方式比较合适？",
+    "options": ["RequestMethod.GET", "RequestMethod.DELETE", "RequestMethod.PUT", "RequestMethod.POST"],
+    "answer": 3,
+    "knowledge_point": "HTTP 方法语义",
+    "explanation": "POST 用于向服务器提交/创建资源，表单提交的标准语义；GET 仅读取、PUT 是整体替换、DELETE 是删除。"
+  },
+  {
+    "id": "q8", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第8题】直板机上的短视频切换到折叠屏打开状态后，哪些 UI 设计有助于体验提升？",
+    "options": [
+      "短视频出现在折叠屏左侧即可，右侧留白",
+      "短视频左右满屏显示，顶部和底部用户看不到没关系",
+      "不做任何优化，直接复用直板机 UI，左右留白或背景模糊",
+      "短视频在屏幕左侧，右侧显示视频评论信息，实现边看边评"
+    ],
+    "answer": 3,
+    "knowledge_point": "一多布局适配",
+    "explanation": "折叠屏宽屏应利用扩展空间提供增量价值：左侧视频、右侧评论的分区布局实现边看边评，优于留白或强行拉伸满屏。"
+  },
+  {
+    "id": "q9", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第9题】用户使用折叠屏进行电商购物比价时，什么体验比较好？",
+    "options": [
+      "不需要比较，凭借记忆就可以",
+      "查看商品详情时，在宽屏设备上点击应用内\"分屏\"按钮分屏，同时查看两个商品详细参数进行比价",
+      "自己用纸和笔记录每个商品的信息进行比较",
+      "直板机的界面怎么比价，折叠屏上的界面就怎么比价"
+    ],
+    "answer": 1,
+    "knowledge_point": "一多布局适配",
+    "explanation": "宽屏设备的分屏能力支持同屏查看两个商品参数，充分发挥大屏优势；B 描述的正是官方推荐的比价体验。"
+  },
+  {
+    "id": "q10", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第10题】下列哪一种转场类型建议使用父子转场手法？",
+    "options": ["新建转场", "搜索转场", "上下级页面转场", "编辑转场"],
+    "answer": 2,
+    "knowledge_point": "动效转场",
+    "explanation": "父子转场用于层级关系的页面切换：上级页面与下级页面共享部分元素、内容从概要到详情展开，适合上下级页面转场。"
+  },
+  {
+    "id": "q11", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第11题】\"一次开发，多端部署\"提供几个核心能力，如下哪个不是一多开发的核心能力？",
+    "options": ["多端分发机制", "多端开发环境", "多端协同能力", "多端开发能力"],
+    "answer": 2,
+    "knowledge_point": "一次开发多端部署",
+    "explanation": "一多的三大核心能力：多端开发环境（DevEco Studio）、多端开发能力（ArkUI 自适应布局与分层参数化）、多端分发机制（应用市场按需分发）；多端协同不属于其核心能力。"
+  },
+  {
+    "id": "q12", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第12题】下面哪个组件不能包含子组件？",
+    "options": ["Row", "Button", "Text", "LoadingProgress"],
+    "answer": 3,
+    "knowledge_point": "组件分类",
+    "explanation": "LoadingProgress 是原子型展示组件，不能包含子组件；Row 是容器，Button/Text 可通过构造参数设置子内容。"
+  },
+  {
+    "id": "q13", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第13题】Row 组件中有两个 Text 组件，使用 justifyContent 时哪个属性可以实现左右两端对齐？",
+    "options": ["FlexAlign.Start", "FlexAlign.SpaceEvenly", "FlexAlign.End", "FlexAlign.SpaceBetween"],
+    "answer": 3,
+    "knowledge_point": "Flex 布局对齐",
+    "explanation": "SpaceBetween 将子元素两端贴边、中间均分间隙；SpaceEvenly 是包括两端的间隙完全均分，不会贴边。"
+  },
+  {
+    "id": "q14", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第14题】下列组件类型中，容器组件是：",
+    "options": ["TextArea", "Text", "List", "DatePicker"],
+    "answer": 2,
+    "knowledge_point": "组件分类",
+    "explanation": "List 是可滚动的容器组件，可包含 ListItem 子项；TextArea/Text/DatePicker 是功能型原子组件。"
+  },
+  {
+    "id": "q15", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第15题】关于 Web 组件，下面描述错误的是：",
+    "options": [
+      "WebController 控制器可以控制 Web 组件各种行为，比如 forward、backward、runJavaScript 等。",
+      "Web 组件支持 fileAccess、javaScriptAccess 等多种属性设置，例如 javaScriptAccess(true) 表示允许执行 JavaScript 脚本。",
+      "Web 组件支持 onConfirm、onConsole 等多种事件，例如网页调用 confirm() 告警时触发 onConfirm 回调。",
+      "使用 Web 组件访问在线和离线网页都需要添加 ohos.permission.INTERNET 权限。"
+    ],
+    "answer": 3,
+    "knowledge_point": "Web 组件",
+    "explanation": "访问在线网页才需要 INTERNET 权限；加载本地/离线页面（如 $rawfile、file://）无需网络权限，故 D 错误。"
+  },
+  {
+    "id": "q16", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第16题】组件公共事件 onDragMove 的触发范围是：",
+    "options": ["组件范围内移动时触发回调", "设备显示区域内移动时触发回调", "离开组件范围移动时触发回调", "应用范围内移动时触发回调"],
+    "answer": 0,
+    "knowledge_point": "公共事件",
+    "explanation": "onDragMove 在拖拽活动范围内（组件范围内）移动时触发；onDragLeave 才是离开组件范围时触发。"
+  },
+  {
+    "id": "q17", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第17题】关于 Button 组件，下面哪个样式是胶囊型按钮？",
+    "options": ["ButtonType.Capsule", "ButtonType.Normal", "ButtonType.Circle", "以上都不是"],
+    "answer": 0,
+    "knowledge_point": "Button 组件",
+    "explanation": "ButtonType.Capsule 即胶囊型按钮（圆角半圆形）；Normal 为常规矩形，Circle 为圆形。"
+  },
+  {
+    "id": "q18", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第18题】关于 Tabs 组件页签的位置设置，下面描述错误的是：",
+    "options": [
+      "barPosition 为 Start（默认值）、vertical 为 false（默认值）时，页签位于容器顶部。",
+      "barPosition 为 Start（默认值）、vertical 为 true 时，页签位于容器左侧。",
+      "barPosition 为 End、vertical 为 false（默认值）时，页签位于容器底部。",
+      "barPosition 为 End、vertical 为 true 时，页签位于容器底部。"
+    ],
+    "answer": 3,
+    "knowledge_point": "Tabs 组件",
+    "explanation": "End + vertical=true 时页签位于容器右侧而非底部：vertical 决定页签在水平还是垂直轴上排列，End 对应该轴的末端（右侧）。"
+  },
+  {
+    "id": "q19", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第19题】实现一个包含图片和文本等信息的广告弹窗，使用下面哪种弹窗可以实现？",
+    "options": ["AlertDialog", "@CustomDialog", "TextPickerDialog", "TimePickerDialog"],
+    "answer": 1,
+    "knowledge_point": "弹窗",
+    "explanation": "广告弹窗内容自定义程度高（图片+文本+按钮），需用 @CustomDialog 自定义弹窗；AlertDialog 仅支持文本按钮的简单确认，PickerDialog 用于选择。"
+  },
+  {
+    "id": "q20", "type": "choice", "difficulty": "easy", "score": 5,
+    "stem": "【原卷第20题】下列哪一项不属于 ArkUI 组件的公共事件？",
+    "options": ["onAppear", "onTouch", "onClick", "on"],
+    "answer": 3,
+    "knowledge_point": "公共事件",
+    "explanation": "onAppear/onTouch/onClick 都是组件通用事件；\"on\" 只是事件监听的方法前缀，本身不是事件。"
+  },
+  {
+    "id": "q21", "type": "choice", "difficulty": "medium", "score": 5,
+    "stem": "【原卷第21题】关于容器组件 Row 和 Column，下面说法错误的是：",
+    "options": [
+      "Column 主轴垂直、交叉轴水平；Row 主轴水平、交叉轴垂直。",
+      "主轴和交叉轴始终相互垂直，Row 和 Column 主轴方向不一样。",
+      "Column 子组件在主轴方向的对齐用 justifyContent 属性设置，参数类型是 FlexAlign。",
+      "Row 子组件在交叉轴方向的对齐方式用 alignItems 属性设置，其参数类型为 HorizontalAlign。"
+    ],
+    "answer": 3,
+    "knowledge_point": "Row/Column 布局",
+    "explanation": "Row 的交叉轴是垂直方向，alignItems 的参数类型应为 VerticalAlign；HorizontalAlign 用于 Column 的交叉轴（水平）对齐，故 D 错误。"
+  }
+]
