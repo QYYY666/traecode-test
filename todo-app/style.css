@@ -1,0 +1,135 @@
+/* ===== 全局重置 ===== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+  background: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  padding-top: 80px;
+  min-height: 100vh;
+}
+
+/* ===== 卡片容器：居中显示 ===== */
+.todo-app {
+  width: 90%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.todo-app h1 {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: #1a1a2e;
+  margin-bottom: 24px;
+}
+
+/* ===== 输入区 ===== */
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.todo-input input:focus { border-color: #4a6cf7; }
+
+.todo-input button {
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+  background: #4a6cf7;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.todo-input button:hover { background: #3a5ae0; }
+
+/* ===== 列表区 ===== */
+.todo-list { list-style: none; }
+
+.todo-list li {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.todo-list li:last-child { border-bottom: none; }
+
+/* 复选框 */
+.todo-list li input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* 文本：已完成时有删除线 + 灰色 */
+.todo-list li .todo-text {
+  flex: 1;
+  font-size: 15px;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.todo-list li.done .todo-text {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+/* 删除按钮 */
+.todo-list li .delete-btn {
+  margin-left: 8px;
+  padding: 4px 10px;
+  font-size: 13px;
+  color: #ff4d4f;
+  background: transparent;
+  border: 1px solid #ffccc4;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.todo-list li .delete-btn:hover {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+/* ===== 空状态提示 ===== */
+.empty-hint {
+  text-align: center;
+  color: #bbb;
+  font-size: 14px;
+  padding: 20px 0;
+  display: none;
+}
+
+.empty-hint.show { display: block; }
+
+/* ===== 统计区 ===== */
+.todo-stats {
+  margin-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  color: #999;
+}
+
+.todo-stats span { font-weight: 600; color: #4a6cf7; }

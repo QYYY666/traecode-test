@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>待办事项</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="todo-app">
+    <h1>待办事项</h1>
+
+    <!-- 输入区：输入框 + 添加按钮 -->
+    <div class="todo-input">
+      <input type="text" id="todoText" placeholder="输入待办事项..." maxlength="100" autofocus>
+      <button id="addBtn">添加</button>
+    </div>
+
+    <!-- 列表区：动态渲染待办项 -->
+    <ul id="todoList" class="todo-list"></ul>
+
+    <!-- 空状态提示 -->
+    <p id="emptyHint" class="empty-hint">暂无待办事项</p>
+
+    <!-- 统计区 -->
+    <div class="todo-stats">
+      <span id="activeCount">0</span> 项未完成
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
