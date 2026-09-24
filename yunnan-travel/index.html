@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成都→云南 昆大丽7天6晚省钱攻略（2026国庆 · 2人同行）</title>
+<style>
+/* ========== 基础与变量 ========== */
+:root{
+  --ink:#1f2937;
+  --ink-soft:#374151;
+  --muted:#6b7280;
+  --line:#e5e1d8;
+  --paper:#ffffff;
+  --bg:#f5f3ee;
+  --teal:#0f766f;
+  --teal-deep:#115e59;
+  --teal-soft:#e6f2f0;
+  --amber:#d97706;
+  --amber-soft:#fdf1e1;
+  --clay:#c2410c;
+  --blue:#1d4ed8;
+  --night:#1e3a8a;
+  --free:#15803d;
+  --shadow:0 2px 10px rgba(31,41,55,.07);
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.7;
+  font-size:15px;
+}
+a{color:var(--teal-deep);text-decoration:none;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
+
+/* ========== 顶部导航 ========== */
+.topnav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topnav .wrap{display:flex;align-items:center;gap:18px;height:52px;overflow-x:auto;}
+.brand{font-weight:700;color:var(--teal-deep);white-space:nowrap;font-size:15px;}
+.topnav nav{display:flex;gap:14px;margin-left:auto;white-space:nowrap;}
+.topnav nav a{color:var(--muted);font-size:13.5px;}
+.topnav nav a:hover{color:var(--teal);}
+.btn-print{
+  border:none;cursor:pointer;
+  background:var(--teal);color:#fff;
+  padding:7px 16px;border-radius:999px;font-size:13px;white-space:nowrap;
+}
+.btn-print:hover{background:var(--teal-deep);}
+
+/* ========== 头部封面 ========== */
+.hero{
+  background:linear-gradient(135deg,#0f766f 0%,#115e59 55%,#0c4a45 100%);
+  color:#fff;padding:46px 0 40px;
+}
+.hero .wrap{display:grid;grid-template-columns:1.6fr 1fr;gap:34px;align-items:center;}
+.hero .kicker{
+  display:inline-block;font-size:12.5px;letter-spacing:2px;
+  background:rgba(255,255,255,.16);padding:4px 12px;border-radius:999px;margin-bottom:14px;
+}
+.hero h1{font-size:34px;line-height:1.3;margin-bottom:12px;}
+.hero p.sub{font-size:15px;opacity:.92;margin-bottom:20px;}
+.hero-stats{display:flex;flex-wrap:wrap;gap:10px;}
+.hero-stats span{
+  background:rgba(255,255,255,.14);
+  border:1px solid rgba(255,255,255,.25);
+  padding:6px 14px;border-radius:999px;font-size:13px;
+}
+.weather-card{
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:var(--radius);padding:18px 20px;
+}
+.weather-card h3{font-size:14px;font-weight:600;margin-bottom:10px;opacity:.95;}
+.w-row{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.25);font-size:13.5px;}
+.w-row:last-child{border-bottom:none;}
+.w-row b{font-weight:600;}
+.weather-note{margin-top:10px;font-size:12px;opacity:.82;line-height:1.6;}
+
+/* ========== 通用区块 ========== */
+section{padding:42px 0 8px;}
+.sec-title{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.sec-title h2{font-size:23px;color:var(--ink);}
+.sec-title .ico{
+  width:38px;height:38px;border-radius:11px;
+  background:var(--teal-soft);color:var(--teal-deep);
+  display:grid;place-items:center;font-size:19px;flex:none;
+}
+.sec-desc{color:var(--muted);font-size:13.5px;margin-bottom:22px;}
+.card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:var(--radius);box-shadow:var(--shadow);
+}
+
+/* ========== 自绘 SVG 路线地图 ========== */
+.map-card{padding:20px 20px 12px;}
+.map-svg{width:100%;height:auto;}
+.map-legend{
+  display:flex;flex-wrap:wrap;gap:16px;
+  padding:12px 6px 4px;font-size:12.5px;color:var(--muted);
+}
+.map-legend span{display:inline-flex;align-items:center;gap:6px;}
+.lg-line{width:26px;height:0;border-top:3px solid var(--teal);display:inline-block;}
+.lg-night{border-top:3px dashed var(--night);}
+.lg-bus{border-top:2px dashed var(--muted);}
+.lg-bike{border-top:3px solid var(--amber);}
+.lg-fly{border-top:3px dashed var(--clay);}
+.lg-dot{width:11px;height:11px;border-radius:50%;background:var(--teal);display:inline-block;}
+.lg-dot.opt{background:#fff;border:2px solid var(--muted);}
+/* SVG 内部样式 */
+.map-node{cursor:pointer;}
+.map-node circle{fill:#fff;stroke:var(--teal);stroke-width:2.5;transition:transform .15s;transform-origin:center;transform-box:fill-box;}
+.map-node:hover circle{transform:scale(1.25);stroke:var(--amber);}
+.map-node text{font-size:11.5px;fill:var(--ink);font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round;}
+.map-node .sub{font-size:9.5px;fill:var(--muted);font-weight:400;}
+.node-home circle{fill:var(--night)!important;stroke:var(--night)!important;}
+.node-home text{fill:var(--night);}
+.node-opt circle{fill:#f3f4f6;stroke:var(--muted);}
+.node-opt text{fill:var(--muted);}
+.node-snow circle{fill:#eff6ff;stroke:var(--blue);}
+.day-badge{fill:var(--amber);font-size:10px;font-weight:700;}
+.route-label{font-size:10.5px;fill:var(--ink-soft);paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;font-weight:600;}
+.map-tip{font-size:12px;color:var(--muted);padding:2px 6px 8px;}
+
+/* ========== 每日概览 ========== */
+.overview-grid{
+  display:grid;grid-template-columns:repeat(7,1fr);gap:12px;
+}
+.ov-item{padding:16px 12px;text-align:center;transition:transform .15s;}
+.ov-item:hover{transform:translateY(-3px);border-color:var(--teal);}
+.ov-num{
+  width:34px;height:34px;margin:0 auto 8px;border-radius:50%;
+  background:var(--teal-soft);color:var(--teal-deep);
+  display:grid;place-items:center;font-weight:700;font-size:14px;
+}
+.ov-item h4{font-size:13.5px;margin-bottom:5px;}
+.ov-item p{font-size:12px;color:var(--muted);line-height:1.5;}
+.ov-item .ov-ico{font-size:20px;display:block;margin-bottom:5px;}
+
+/* ========== 每日详情 ========== */
+.day{padding:0;margin-bottom:26px;overflow:hidden;}
+.day-head{
+  display:flex;align-items:center;gap:16px;
+  padding:18px 24px;border-bottom:1px solid var(--line);
+  background:linear-gradient(90deg,var(--teal-soft),#fff 70%);
+}
+.day-badge-lg{
+  flex:none;width:54px;height:54px;border-radius:15px;
+  background:var(--teal);color:#fff;
+  display:grid;place-items:center;text-align:center;line-height:1.15;
+  font-weight:700;
+}
+.day-badge-lg small{display:block;font-size:10px;font-weight:400;opacity:.85;}
+.day-badge-lg b{font-size:19px;}
+.day-head h3{font-size:18px;}
+.day-head .tags{display:flex;flex-wrap:wrap;gap:7px;margin-left:auto;}
+.tag{
+  font-size:12px;padding:3px 11px;border-radius:999px;
+  background:#f3f4f6;color:var(--ink-soft);white-space:nowrap;
+}
+.tag.city{background:var(--teal-soft);color:var(--teal-deep);}
+.tag.free{background:#e8f5ec;color:var(--free);}
+.tag.move{background:var(--amber-soft);color:var(--clay);}
+.day-body{
+  display:grid;grid-template-columns:1.9fr 1fr;gap:0;
+}
+/* 时间轴 */
+.timeline{list-style:none;padding:18px 22px;border-right:1px solid var(--line);}
+.tl-item{display:grid;grid-template-columns:58px 30px 1fr;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);}
+.tl-item:last-child{border-bottom:none;}
+.tl-time{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px;}
+.tl-ico{font-size:16px;text-align:center;padding-top:1px;}
+.tl-main h4{font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tl-main p{font-size:13px;color:var(--muted);}
+.cost{font-size:11px;background:var(--amber-soft);color:var(--clay);padding:1px 8px;border-radius:999px;font-weight:600;}
+.cost.zero{background:#e8f5ec;color:var(--free);}
+/* 侧栏贴士 */
+.day-side{padding:18px 20px;display:flex;flex-direction:column;gap:14px;background:#fbfaf7;}
+.side-box h4{font-size:13.5px;margin-bottom:7px;display:flex;align-items:center;gap:6px;}
+.side-box p,.side-box li{font-size:12.8px;color:var(--ink-soft);}
+.side-box ul{padding-left:18px;}
+.side-box li{margin-bottom:3px;}
+.amap-btn{
+  display:inline-block;margin-top:6px;
+  font-size:12.5px;padding:6px 14px;border-radius:8px;
+  background:var(--teal);color:#fff;
+}
+.amap-btn:hover{background:var(--teal-deep);}
+.amap-btn.alt{background:#fff;color:var(--teal-deep);border:1px solid var(--teal);}
+/* 景点图片卡 */
+.spot-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:12px;
+  padding:16px 22px 20px;border-top:1px solid var(--line);
+}
+.spot{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff;}
+.spot-img{
+  position:relative;aspect-ratio:16/10;
+  background:linear-gradient(135deg,#cfe9e6,#e7f3f1);
+  display:grid;place-items:center;color:var(--teal-deep);font-size:34px;
+}
+.spot-img.img-fallback{background:linear-gradient(135deg,#dbeafe,#e0f2fe);color:var(--blue);}
+.spot-img img{width:100%;height:100%;object-fit:cover;}
+.spot-info{padding:9px 11px 11px;}
+.spot-info h5{font-size:13.5px;margin-bottom:2px;}
+.spot-info p{font-size:11.8px;color:var(--muted);line-height:1.5;}
+.spot-fee{font-size:11px;color:var(--free);font-weight:600;}
+
+/* ========== 表格通用 ========== */
+.tbl-card{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px;}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);}
+th{background:#faf8f4;font-weight:600;color:var(--ink-soft);font-size:13px;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:none;}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tbl-note{padding:10px 16px 14px;font-size:12.3px;color:var(--muted);}
+
+/* ========== 网格信息卡 ========== */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.info-card{padding:20px 22px;}
+.info-card h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card ul{list-style:none;}
+.info-card li{font-size:13.3px;padding:7px 0 7px 22px;position:relative;border-bottom:1px dashed var(--line);color:var(--ink-soft);}
+.info-card li:last-child{border-bottom:none;}
+.info-card li::before{content:"▸";position:absolute;left:4px;color:var(--teal);font-size:12px;}
+.info-card li b{color:var(--ink);}
+.price-tag{color:var(--clay);font-weight:600;}
+
+/* ========== 美食 ========== */
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.food-card{padding:20px 22px;}
+.food-card .city-ico{font-size:22px;}
+.food-card h3{font-size:16.5px;margin:6px 0 4px;}
+.food-card .where{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.food-item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.2px;}
+.food-item:last-child{border-bottom:none;}
+.food-item em{font-style:normal;color:var(--muted);font-size:12px;white-space:nowrap;}
+
+/* ========== 预算 ========== */
+.budget-modes{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.mode-btn{
+  border:1.5px solid var(--line);background:#fff;cursor:pointer;
+  padding:9px 20px;border-radius:999px;font-size:13.5px;color:var(--muted);
+}
+.mode-btn.active{border-color:var(--teal);background:var(--teal-soft);color:var(--teal-deep);font-weight:600;}
+.budget-card{padding:22px 24px;}
+.budget-total{
+  display:flex;flex-wrap:wrap;gap:26px;align-items:baseline;
+  margin-top:16px;padding-top:16px;border-top:2px solid var(--teal-soft);
+}
+.budget-total .big{font-size:30px;font-weight:800;color:var(--clay);font-variant-numeric:tabular-nums;}
+.budget-total .two{font-size:15px;color:var(--ink-soft);}
+.budget-total .hint{font-size:12.5px;color:var(--muted);}
+
+/* ========== 穿衣 + 装备 ========== */
+.wear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.wear-card{padding:20px;}
+.wear-card h3{font-size:15.5px;margin-bottom:6px;}
+.wear-card .temp{font-size:13px;color:var(--clay);font-weight:600;margin-bottom:10px;}
+.wear-card li{font-size:13px;padding:5px 0 5px 20px;position:list-item;list-style:none;}
+.wear-card li::before{content:"👕";position:absolute;left:0;font-size:11px;}
+.checklist{columns:2;gap:24px;padding:20px 24px;}
+.checklist li{font-size:13.5px;list-style:none;padding:5px 0 5px 26px;position:relative;break-inside:avoid;}
+.checklist li::before{content:"☐";position:absolute;left:2px;color:var(--teal);font-size:15px;}
+
+/* ========== 紧急电话 / 避坑 ========== */
+.sos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.sos-item{padding:16px;text-align:center;}
+.sos-item .n{font-size:21px;font-weight:800;color:var(--clay);letter-spacing:1px;}
+.sos-item .t{font-size:12.8px;color:var(--ink-soft);margin-top:3px;}
+.trap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.trap-item{padding:16px 18px;display:flex;gap:12px;}
+.trap-item .x{color:#dc2626;font-weight:800;flex:none;}
+.trap-item h4{font-size:14px;margin-bottom:3px;}
+.trap-item p{font-size:12.8px;color:var(--muted);}
+
+/* ========== 页脚 ========== */
+footer{
+  margin-top:40px;padding:26px 0 40px;
+  border-top:1px solid var(--line);
+  color:var(--muted);font-size:12.5px;text-align:center;
+}
+
+/* ========== 响应式 ========== */
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;}
+  .overview-grid{grid-template-columns:repeat(4,1fr);}
+  .day-body{grid-template-columns:1fr;}
+  .timeline{border-right:none;border-bottom:1px solid var(--line);}
+  .spot-strip{grid-template-columns:repeat(2,1fr);}
+  .info-grid,.food-grid,.wear-grid{grid-template-columns:1fr;}
+  .sos-grid{grid-template-columns:repeat(2,1fr);}
+  .trap-grid{grid-template-columns:1fr;}
+  .checklist{columns:1;}
+}
+@media (max-width:560px){
+  .overview-grid{grid-template-columns:repeat(2,1fr);}
+  .hero h1{font-size:26px;}
+  .day-head{flex-wrap:wrap;}
+  .day-head .tags{margin-left:0;}
+}
+
+/* ========== 打印友好：白底高对比 ========== */
+@media print{
+  body{background:#fff;font-size:11.5px;}
+  .topnav,.btn-print,.no-print{display:none!important;}
+  .hero{background:#fff!important;color:#000!important;padding:18px 0;border-bottom:2px solid #000;}
+  .hero .wrap{grid-template-columns:1fr;gap:14px;}
+  .hero .kicker,.hero-stats span,.weather-card{
+    background:#fff!important;color:#000!important;border:1px solid #888!important;
+  }
+  .weather-note,.hero p.sub{color:#333!important;}
+  .card,.ov-item,.spot,.info-card,.food-card,.wear-card,.sos-item,.trap-item,.mode-btn{
+    box-shadow:none!important;break-inside:avoid;
+  }
+  .day,.map-card,.budget-card{break-inside:avoid;}
+  section{padding:16px 0 0;}
+  .day-side{background:#fff!important;}
+  th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  a{color:#000;text-decoration:underline;}
+  .cost,.tag,.ov-num,.day-badge-lg,.sec-title .ico,.sos-item .n{print-color-adjust:exact;}
+  @page{margin:12mm;}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== 顶部导航（打印时隐藏） ========== -->
+<div class="topnav no-print">
+  <div class="wrap">
+    <span class="brand">🏔️ 云南省钱环线</span>
+    <nav>
+      <a href="#map">路线图</a>
+      <a href="#overview">每日概览</a>
+      <a href="#detail">详细行程</a>
+      <a href="#transport">交通</a>
+      <a href="#stay">住宿</a>
+      <a href="#food">美食</a>
+      <a href="#budget">预算</a>
+      <a href="#wear">穿衣</a>
+      <a href="#tips">实用信息</a>
+    </nav>
+    <button class="btn-print" onclick="window.print()">🖨️ 打印 / 存PDF</button>
+  </div>
+</div>
+
+<!-- ========== 封面：标题 + 天气 ========== -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">BUDGET TRAVEL · 极致省钱版</span>
+      <h1>成都 → 云南（昆明·大理·丽江）<br>7天6晚穷游攻略</h1>
+      <p class="sub">2026年10月1日（国庆）出发 · 2人同行 · 火车夕发朝至省住宿 · 古城古镇几乎全免费 · 人均约 ¥1900–3000</p>
+      <div class="hero-stats">
+        <span>🗓️ 10/1 – 10/7（10/8清晨抵蓉）</span>
+        <span>👫 2人拼房最划算</span>
+        <span>🚆 5段火车仅 ¥857</span>
+        <span>🏞️ 主线景点 0 门票</span>
+        <span>💰 主推人均 ≈ ¥2400</span>
+      </div>
+    </div>
+    <div class="weather-card">
+      <h3>🌤️ 三地天气（高德实时预报 · 9月19日查询）</h3>
+      <div class="w-row"><span>昆明</span><b>多云有阵雨　15–26℃</b></div>
+      <div class="w-row"><span>大理</span><b>小雨转多云　15–27℃</b></div>
+      <div class="w-row"><span>丽江</span><b>阵雨为主　13–24℃</b></div>
+      <p class="weather-note">10月初为云南雨季尾声，以阵雨/多云为主、早晚凉、紫外线极强。按"洋葱式穿搭"准备，务必带伞和防晒。</p>
+    </div>
+  </div>
+</header>
+
+<!-- ========== 自绘路线地图 ========== -->
+<section id="map" class="wrap">
+  <div class="sec-title"><span class="ico">🗺️</span><h2>全程路线示意图</h2></div>
+  <p class="sec-desc">按真实地理方位自绘（节点位置做了舒展处理）。点击任意节点，可直接唤起<strong>高德地图 APP</strong>查看位置并导航。</p>
+  <div class="card map-card">
+    <svg class="map-svg" viewBox="0 0 960 520" role="img" aria-label="成都昆明大理丽江路线图">
+      <!-- 水体背景 -->
+      <ellipse cx="468" cy="452" rx="64" ry="22" fill="#bae6fd" opacity=".55" stroke="#7dd3fc"/>
+      <text x="468" y="456" text-anchor="middle" font-size="10" fill="#0369a1">滇池</text>
+      <ellipse cx="212" cy="248" rx="120" ry="58" transform="rotate(-18 212 248)" fill="#bae6fd" opacity=".55" stroke="#7dd3fc"/>
+      <text x="212" y="244" text-anchor="middle" font-size="10" fill="#0369a1">洱 海</text>
+      <!-- 玉龙雪山装饰 -->
+      <path d="M92 30 L120 -8 L150 30 Z" fill="#dbeafe" stroke="#93c5fd"/>
+      <path d="M110 6 L120 -8 L131 6 L120 2 Z" fill="#fff"/>
+
+      <!-- 路线层（先画在节点下方） -->
+      <!-- D1 夜火车 成都→昆明 -->
+      <path d="M868,62 C 800,180 740,300 642,428" fill="none" stroke="#1e3a8a" stroke-width="3" stroke-dasharray="9 6"/>
+      <!-- D3 动车 昆明→大理 -->
+      <path d="M638,428 C 540,400 430,372 322,332" fill="none" stroke="#0f766f" stroke-width="2.8" stroke-dasharray="7 5"/>
+      <!-- 大理站→古城 公交 -->
+      <line x1="318" y1="330" x2="222" y2="330" stroke="#64748b" stroke-width="2" stroke-dasharray="3 4"/>
+      <!-- D4 骑行环线 古城→龙龛→喜洲（去/回两条线） -->
+      <path d="M214,326 Q 246,306 264,296 Q 205,272 146,252" fill="none" stroke="#d97706" stroke-width="2.6"/>
+      <path d="M138,244 Q 168,302 208,332" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="2 5" opacity=".75"/>
+      <!-- D5 动车 大理→丽江 -->
+      <path d="M320,326 C 330,250 340,190 348,134" fill="none" stroke="#0f766f" stroke-width="2.8" stroke-dasharray="7 5"/>
+      <line x1="346" y1="128" x2="256" y2="120" stroke="#64748b" stroke-width="2" stroke-dasharray="3 4"/>
+      <!-- D6 古镇巴士/步行 古城→束河→白沙 远眺雪山 -->
+      <path d="M246,116 L 183,78 L 212,40" fill="none" stroke="#0f766f" stroke-width="2.4"/>
+      <line x1="210" y1="34" x2="150" y2="28" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="2 4"/>
+      <!-- D7 返程 丽江→成都（飞机/火车方向示意） -->
+      <path d="M250,112 C 470,28 700,16 866,58" fill="none" stroke="#c2410c" stroke-width="2.6" stroke-dasharray="2 8"/>
+
+      <!-- 路线文字标注 -->
+      <text x="792" y="226" class="route-label" transform="rotate(63 792 226)">D1 K4761 硬卧¥221 夕发朝至</text>
+      <text x="470" y="404" class="route-label" transform="rotate(14 470 404)">D3 动车约2h ¥145</text>
+      <text x="252" y="346" class="route-label">公交¥3</text>
+      <text x="196" y="290" class="route-label" transform="rotate(-20 196 290)">D4 环洱海骑行 租车¥15/天</text>
+      <text x="354" y="232" class="route-label" transform="rotate(-83 354 232)">D5 动车¥80</text>
+      <text x="244" y="62" class="route-label">D6 古镇专线</text>
+      <text x="540" y="34" class="route-label" fill="#c2410c">D7 返程：火车昆明中转¥411 / 飞机约¥500</text>
+
+      <!-- 天数角标 -->
+      <g><circle cx="772" cy="252" r="11" class="day-badge"/><text x="772" y="256" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D1</text></g>
+      <g><circle cx="486" cy="380" r="11" class="day-badge"/><text x="486" y="384" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D3</text></g>
+      <g><circle cx="196" cy="272" r="11" class="day-badge"/><text x="196" y="276" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D4</text></g>
+      <g><circle cx="338" cy="212" r="11" class="day-badge"/><text x="338" y="216" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D5</text></g>
+      <g><circle cx="166" cy="58" r="11" class="day-badge"/><text x="166" y="62" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D6</text></g>
+      <g><circle cx="556" cy="52" r="11" fill="#c2410c"/><text x="556" y="56" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D7</text></g>
+
+      <!-- 节点：成都（家） -->
+      <a class="map-node node-home" target="_blank" href="https://uri.amap.com/marker?position=103.979102,30.685329&name=成都西站&coordinate=gaode&callnative=1">
+        <circle cx="870" cy="60" r="8"/>
+        <text x="870" y="44" text-anchor="middle">成都·家</text>
+        <text x="870" y="80" text-anchor="middle" class="sub">成都西站</text>
+      </a>
+      <!-- 节点：昆明 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=102.722277,25.015257&name=昆明站&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="640" cy="430" r="7"/>
+        <text x="640" y="454" text-anchor="middle">昆明站</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=102.703621,25.048416&name=翠湖公园&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="520" cy="385" r="7"/>
+        <text x="520" y="377" text-anchor="middle">翠湖公园</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=102.710268,25.032860&name=金马碧鸡坊&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="585" cy="402" r="7"/>
+        <text x="585" y="394" text-anchor="middle">金马碧鸡坊</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=102.650825,24.973588&name=海埂大坝(滇池)&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="470" cy="455" r="7"/>
+        <text x="470" y="480" text-anchor="middle">海埂大坝</text>
+      </a>
+      <!-- 节点：大理 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.250635,25.589569&name=大理站&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="320" cy="330" r="7"/>
+        <text x="320" y="354" text-anchor="middle">大理站</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.163661,25.687225&name=大理古城&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="215" cy="330" r="8"/>
+        <text x="215" y="352" text-anchor="middle">大理古城</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.194010,25.689106&name=龙龛码头&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="265" cy="296" r="7"/>
+        <text x="300" y="292">龙龛码头</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.132950,25.854179&name=喜洲古镇&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="140" cy="250" r="8"/>
+        <text x="118" y="240" text-anchor="end">喜洲古镇</text>
+      </a>
+      <a class="map-node node-opt" target="_blank" href="https://uri.amap.com/route?to=100.195522,25.906603&name=双廊古镇(可选)&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="280" cy="206" r="6.5"/>
+        <text x="280" y="192" text-anchor="middle">双廊（可选·远）</text>
+      </a>
+      <!-- 节点：丽江 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.252694,26.810521&name=丽江站&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="350" cy="130" r="7"/>
+        <text x="350" y="116" text-anchor="middle">丽江站</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.225830,26.876468&name=丽江古城&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="250" cy="120" r="8"/>
+        <text x="250" y="145" text-anchor="middle">丽江古城</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.204642,26.915307&name=束河古镇&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="180" cy="75" r="7"/>
+        <text x="150" y="70" text-anchor="end">束河古镇</text>
+      </a>
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=100.216933,26.953303&name=白沙古镇&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="215" cy="36" r="7"/>
+        <text x="246" y="32">白沙古镇</text>
+      </a>
+      <a class="map-node node-snow node-opt" target="_blank" href="https://uri.amap.com/route?to=100.179253,27.096143&name=玉龙雪山(可选升级)&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="120" cy="26" r="6.5"/>
+        <text x="70" y="22" text-anchor="start">玉龙雪山（可选）</text>
+      </a>
+    </svg>
+    <div class="map-legend no-print">
+      <span><i class="lg-line lg-night"></i>夜间火车</span>
+      <span><i class="lg-line"></i>日间动车</span>
+      <span><i class="lg-line lg-bus"></i>公交/接驳</span>
+      <span><i class="lg-line lg-bike"></i>骑行</span>
+      <span><i class="lg-line lg-fly"></i>返程方向</span>
+      <span><i class="lg-dot"></i>行程节点（可点击导航）</span>
+      <span><i class="lg-dot opt"></i>可选/远途</span>
+    </div>
+    <p class="map-tip">💡 手机上点击节点会唤起高德 APP；电脑上点击打开高德网页版。双廊、玉龙雪山为"可选升级项"，省钱主线不含。</p>
+  </div>
+</section>
+
+<!-- ========== 每日概览 ========== -->
+<section id="overview" class="wrap">
+  <div class="sec-title"><span class="ico">📅</span><h2>7天每日概览</h2></div>
+  <p class="sec-desc">昆明 1 天 → 大理 2 天 → 丽江 2 天 → 返程，全程不走回头路。</p>
+  <div class="overview-grid">
+    <a class="card ov-item" href="#day1"><span class="ov-num">D1</span><span class="ov-ico">🚆</span><h4>10/1 周四</h4><p>成都西站集合<br>夜火车赴昆明</p></a>
+    <a class="card ov-item" href="#day2"><span class="ov-num">D2</span><span class="ov-ico">🏛️</span><h4>10/2 周五</h4><p>翠湖·讲武堂<br>金马碧鸡坊夜市</p></a>
+    <a class="card ov-item" href="#day3"><span class="ov-num">D3</span><span class="ov-ico">🌊</span><h4>10/3 周六</h4><p>滇池海埂大坝<br>动车到大理</p></a>
+    <a class="card ov-item" href="#day4"><span class="ov-num">D4</span><span class="ov-ico">🚲</span><h4>10/4 周日</h4><p>洱海骑行<br>龙龛→喜洲</p></a>
+    <a class="card ov-item" href="#day5"><span class="ov-num">D5</span><span class="ov-ico">🏮</span><h4>10/5 周一</h4><p>动车到丽江<br>大研古城夜游</p></a>
+    <a class="card ov-item" href="#day6"><span class="ov-num">D6</span><span class="ov-ico">⛰️</span><h4>10/6 周二</h4><p>束河·白沙古镇<br>黑龙潭雪山倒影</p></a>
+    <a class="card ov-item" href="#day7"><span class="ov-num">D7</span><span class="ov-ico">🏠</span><h4>10/7 周三</h4><p>动车回昆明<br>斗南花市·夜车返蓉</p></a>
+  </div>
+</section>
+
+<!-- ========== 详细行程 ========== -->
+<section id="detail" class="wrap">
+  <div class="sec-title"><span class="ico">🧭</span><h2>每日详细时间表</h2></div>
+  <p class="sec-desc">时间 / 地点 / 活动 / 费用 / 备注一应俱全；费用标注为<strong>每人</strong>价格，<span class="cost zero">免费</span> 即 0 元景点。</p>
+
+  <!-- ===== D1 ===== -->
+  <div class="card day" id="day1">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>1</b></div>
+      <div><h3>10月1日 · 成都 → 昆明（夜宿火车）</h3></div>
+      <div class="tags"><span class="tag move">🚆 交通日</span><span class="tag">省1晚住宿</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">15:00</span><span class="tl-ico">🚇</span><div class="tl-main"><h4>地铁4号线 → 成都西站 <span class="cost">约¥6</span></h4><p>国庆首日市区易堵，提前2小时到站；成都西站非成都站/成都东站，切勿跑错。</p></div></li>
+        <li class="tl-item"><span class="tl-time">16:51</span><span class="tl-ico">🚆</span><div class="tl-main"><h4>K4761次 成都西 → 昆明 <span class="cost">硬卧¥221</span></h4><p>次日 05:25 到达，历时 12h34m。夕发朝至＝交通费＋住宿费一次解决。硬座¥119（极限省钱可选，过夜较累）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">18:30</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>车上晚餐（自备）<span class="cost">约¥20</span></h4><p>站外超市买好泡面、面包、水、零食上车，列车餐车价格约为地面3倍。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🏨 住宿</h4><p>火车硬卧（优先中铺：安全且不被过道灯光打扰）。带抓绒外套或薄毯，夜车空调偏冷。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>国庆车票9月17日前后开售，<b>K4761硬卧秒空</b>，12306提前填好乘车人、开售即抢，抢不到立刻候补</li><li>充电宝充满电，备耳塞眼罩</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== D2 ===== -->
+  <div class="card day" id="day2">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>2</b></div>
+      <div><h3>10月2日 · 昆明老城慢游</h3></div>
+      <div class="tags"><span class="tag city">昆明</span><span class="tag free">全天0门票</span><span class="tag">约1.5万步</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">05:25</span><span class="tl-ico">🚉</span><div class="tl-main"><h4>抵达昆明站</h4><p>先乘地铁到青旅/酒店寄存行李（一般可提前存包），洗漱吃早餐。</p></div></li>
+        <li class="tl-item"><span class="tl-time">07:00</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>早餐：小锅米线/豆花米线 <span class="cost">¥10–15</span></h4><p>路边本地小店即可，不必迷信网红店。</p></div></li>
+        <li class="tl-item"><span class="tl-time">08:30</span><span class="tl-ico">🌳</span><div class="tl-main"><h4>翠湖公园 <span class="cost zero">免费 · 约1.5h</span></h4><p>昆明城中之玉，晨练本地人聚集地，秋日荷塘柳树很出片。</p></div></li>
+        <li class="tl-item"><span class="tl-time">10:00</span><span class="tl-ico">🏛️</span><div class="tl-main"><h4>云南陆军讲武堂（翠湖西门）<span class="cost zero">免费 · 凭身份证</span></h4><p>明黄色民国建筑，拍照极好看；周一闭馆，今天周五正常开放。</p></div></li>
+        <li class="tl-item"><span class="tl-time">12:00</span><span class="tl-ico">🍲</span><div class="tl-main"><h4>午餐：建新园过桥米线 <span class="cost">¥25–40</span></h4><p>宝善街老店，昆明老字号；或步行去南屏街片区解决。</p></div></li>
+        <li class="tl-item"><span class="tl-time">14:00</span><span class="tl-ico">🏯</span><div class="tl-main"><h4>金马碧鸡坊 → 东西寺塔 → 南屏街 <span class="cost zero">免费</span></h4><p>昆明地标牌坊，一路步行即可，沿途都是老城烟火气。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:00</span><span class="tl-ico">🍢</span><div class="tl-main"><h4>南强街巷夜市 <span class="cost">¥40</span></h4><p>烧饵块、烤乳扇、汽锅鸡、鲜花饼一条街，小吃当晚餐最省。</p></div></li>
+        <li class="tl-item"><span class="tl-time">21:00</span><span class="tl-ico">🚇</span><div class="tl-main"><h4>回酒店休息</h4><p>明天早起去滇池，不熬夜。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍜 当天吃什么</h4><ul><li>早：小锅米线 ¥10</li><li>午：过桥米线 ¥30</li><li>晚：南强街小吃拼盘 ¥40</li></ul></div>
+        <div class="side-box"><h4>🏨 住宿</h4><p>昆明站 / 塘子巷地铁站周边青旅或快捷酒店，赶火车+地铁直达各景点。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>讲武堂带身份证</li><li>市内用支付宝搜"昆明地铁"领乘车码</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/search?keyword=南强街巷夜市&city=昆明&coordinate=gaode&callnative=1">📍 高德导航：南强街巷</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🌳<img src="http://store.is.autonavi.com/showpic/ffcd96427735fd6522c3149398cf7ab5" alt="翠湖公园" onerror="this.remove()"></div><div class="spot-info"><h5>翠湖公园</h5><p>城中免费园林，晨湖垂柳</p><span class="spot-fee">免费</span></div></div>
+      <div class="spot"><div class="spot-img">🏛️<img src="http://store.is.autonavi.com/showpic/89297554086bbd6d5af795d0f031a980" alt="金马碧鸡坊" onerror="this.remove()"></div><div class="spot-info"><h5>金马碧鸡坊</h5><p>昆明城市地标牌坊</p><span class="spot-fee">免费</span></div></div>
+    </div>
+  </div>
+
+  <!-- ===== D3 ===== -->
+  <div class="card day" id="day3">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>3</b></div>
+      <div><h3>10月3日 · 滇池海埂 → 动车赴大理</h3></div>
+      <div class="tags"><span class="tag city">昆明→大理</span><span class="tag move">🚄 动车2h</span><span class="tag free">滇池免费</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🚇</span><div class="tl-main"><h4>地铁5号线 → 海埂大坝 <span class="cost">约¥5</span></h4><p>直达滇池边，别坐黑车。</p></div></li>
+        <li class="tl-item"><span class="tl-time">08:40</span><span class="tl-ico">🌊</span><div class="tl-main"><h4>海埂大坝 + 滇池 <span class="cost zero">免费 · 约2h</span></h4><p>五百里滇池烟波浩渺，远眺西山睡美人。红嘴鸥11月才来，10月看湖景为主。</p></div></li>
+        <li class="tl-item"><span class="tl-time">11:00</span><span class="tl-ico">🛒</span><div class="tl-main"><h4>篆新农贸市场（午餐+闲逛）<span class="cost">¥30</span></h4><p>昆明最火本地市场：豆花米线、辣辣豆花、奶白酒、卤味，人均30元吃到撑。</p></div></li>
+        <li class="tl-item"><span class="tl-time">13:30</span><span class="tl-ico">🚉</span><div class="tl-main"><h4>取行李 → 昆明站</h4><p>看清车票是"昆明站"还是"昆明南站"，两站地铁相隔约40分钟。</p></div></li>
+        <li class="tl-item"><span class="tl-time">14:30</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>动车 昆明 → 大理（午后车次）<span class="cost">二等座¥145</span></h4><p>车程约2小时，每天30+班，13:00–16:00均有车，随买随走（国庆仍建议提前1天买好）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:00</span><span class="tl-ico">🚌</span><div class="tl-main"><h4>大理站 → 大理古城 <span class="cost">¥3</span></h4><p>8路 / 三塔专线公交约40分钟到古城南门，不坐站口拉客黑车。</p></div></li>
+        <li class="tl-item"><span class="tl-time">18:30</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>晚餐：凉鸡米线 / 耙肉饵丝 <span class="cost">¥15–25</span></h4><p>人民路"再回首"凉鸡米线等本地小店，便宜地道。</p></div></li>
+        <li class="tl-item"><span class="tl-time">20:00</span><span class="tl-ico">🏮</span><div class="tl-main"><h4>夜游大理古城 <span class="cost zero">免费</span></h4><p>人民路、复兴路闲逛，街头艺人很多；酒吧只逛不消费。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍜 当天吃什么</h4><ul><li>午：篆新市场小吃 ¥30</li><li>晚：凉鸡米线+饵丝 ¥20</li></ul></div>
+        <div class="side-box"><h4>🏨 住宿（连住2晚）</h4><p>大理古城<b>南门外</b>文献楼/双鹤路一带，比古城内便宜约30%，步行进城5分钟。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>昆明站到大理买"昆明站"发车的车（如D8668/D8676），离市区近</li><li>大理风大，傍晚加薄外套</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=100.163661,25.687225&name=大理古城&mode=bus&coordinate=gaode&callnative=1">📍 高德导航：大理古城</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🌊<img src="http://store.is.autonavi.com/showpic/30c937944ab36cece8b994a47093b0a1" alt="海埂大坝" onerror="this.remove()"></div><div class="spot-info"><h5>海埂大坝</h5><p>滇池边免费观景长堤</p><span class="spot-fee">免费</span></div></div>
+      <div class="spot"><div class="spot-img">🏯<img src="http://store.is.autonavi.com/showpic/6f58f6d8603c8ef98b2b0754c8d3c01a" alt="大理古城" onerror="this.remove()"></div><div class="spot-info"><h5>大理古城</h5><p>白族风情古城，夜景免费逛</p><span class="spot-fee">免费</span></div></div>
+    </div>
+  </div>
+
+  <!-- ===== D4 ===== -->
+  <div class="card day" id="day4">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>4</b></div>
+      <div><h3>10月4日 · 洱海西线骑行（全程最出片）</h3></div>
+      <div class="tags"><span class="tag city">大理</span><span class="tag">🚲 骑行约15km</span><span class="tag free">全线免费</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">07:00</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>早餐：稀豆粉+油条 / 饵丝 <span class="cost">¥10</span></h4><p>古城北门市场一带最本地。</p></div></li>
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">📸</span><div class="tl-main"><h4>龙龛码头（生态廊道入口）<span class="cost zero">免费</span></h4><p>网红"S弯"日出机位；生态廊道只允许步行和自行车，电驴汽车禁入。</p></div></li>
+        <li class="tl-item"><span class="tl-time">08:40</span><span class="tl-ico">🚲</span><div class="tl-main"><h4>租自行车沿廊道骑行 <span class="cost">¥15/天</span></h4><p>路线：龙龛 → 才村码头 → 磻溪S弯 → 喜洲，约15km，平路为主、骑行3小时左右。</p></div></li>
+        <li class="tl-item"><span class="tl-time">12:00</span><span class="tl-ico">🫓</span><div class="tl-main"><h4>喜洲古镇午餐：喜洲粑粑 <span class="cost">¥25</span></h4><p>甜咸两种烤饼8–12元，配凉鸡米线；四方街转角楼、稻田（10月金黄）免费拍。</p></div></li>
+        <li class="tl-item"><span class="tl-time">13:30</span><span class="tl-ico">🏘️</span><div class="tl-main"><h4>喜洲古镇闲逛 <span class="cost zero">免费 · 约1.5h</span></h4><p>白族民居建筑群，严家大院等收费宅院不进也完全不亏。</p></div></li>
+        <li class="tl-item"><span class="tl-time">15:00</span><span class="tl-ico">🚌</span><div class="tl-main"><h4>喜洲 → 大理古城 <span class="cost">¥8–10</span></h4><p>骑不动可在大丽线拦中巴/班车回古城（约20分钟），自行车托人还或原地还车点。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:30</span><span class="tl-ico">☕</span><div class="tl-main"><h4>古城休整 · 城墙看日落 <span class="cost zero">免费</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">19:00</span><span class="tl-ico">🐟</span><div class="tl-main"><h4>晚餐：白族酸辣鱼/炒菜 AA <span class="cost">¥45</span></h4><p>找古城外本地小馆，明码标价，不点"洱海野生鱼"高价菜。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍜 当天吃什么</h4><ul><li>早：稀豆粉 ¥10</li><li>午：喜洲粑粑+米线 ¥25</li><li>晚：白族炒菜AA ¥45</li></ul></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>廊道无遮阳，<b>防晒霜+帽子+墨镜</b>全副武装</li><li>租车选可异地还/押证件少的店，先检查刹车</li><li>双廊在洱海东岸，单程50km，省钱节奏跳过（古城客运站大巴¥25/2h可自行加戏）</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=100.132950,25.854179&name=喜洲古镇&mode=bus&coordinate=gaode&callnative=1">📍 高德导航：喜洲古镇</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🌾<img src="http://store.is.autonavi.com/showpic/4ba362bb5b5093c894b3831c9f61ebe8" alt="喜洲古镇" onerror="this.remove()"></div><div class="spot-info"><h5>喜洲古镇</h5><p>白族民居 + 秋日稻田</p><span class="spot-fee">古镇免费</span></div></div>
+      <div class="spot"><div class="spot-img">🚲<img src="https://aos-cdn-image.amap.com/sns/ugccomment/61b17ac0-5c18-4dea-9034-464c4263952b.jpg" alt="洱海双廊方向" onerror="this.remove()"></div><div class="spot-info"><h5>洱海生态廊道</h5><p>龙龛—喜洲骑行视角</p><span class="spot-fee">免费</span></div></div>
+    </div>
+  </div>
+
+  <!-- ===== D5 ===== -->
+  <div class="card day" id="day5">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>5</b></div>
+      <div><h3>10月5日 · 大理 → 丽江，大研古城夜游</h3></div>
+      <div class="tags"><span class="tag city">大理→丽江</span><span class="tag move">🚄 动车1.5h</span><span class="tag free">古城免费</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🚌</span><div class="tl-main"><h4>退房 → 公交至大理站 <span class="cost">¥3</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">09:13</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>C373等 大理 → 丽江 <span class="cost">二等座¥80</span></h4><p>车程约1.5–2小时，每日20+对随到随走；早班车最省时间。</p></div></li>
+        <li class="tl-item"><span class="tl-time">11:00</span><span class="tl-ico">🚌</span><div class="tl-main"><h4>丽江站 → 古城 <span class="cost">¥2</span></h4><p>18路/4路公交直达；站口"10元包车送客栈"多为购物团拉客，不坐。</p></div></li>
+        <li class="tl-item"><span class="tl-time">12:00</span><span class="tl-ico">🍢</span><div class="tl-main"><h4>午餐：忠义市场小吃 <span class="cost">¥20</span></h4><p>鸡豆凉粉¥5、丽江粑粑¥8、米灌肠、纳西烤鱼，古城边最便宜的一顿。</p></div></li>
+        <li class="tl-item"><span class="tl-time">14:00</span><span class="tl-ico">🏮</span><div class="tl-main"><h4>丽江古城（大研）<span class="cost zero">免费 · 约4h</span></h4><p>大水车 → 四方街 → 大石桥 → 木府外景。古城维护费已取消，木府门票¥40（可选）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:30</span><span class="tl-ico">🌆</span><div class="tl-main"><h4>狮子山半山腰俯瞰古城 <span class="cost zero">免费</span></h4><p>沿新华街上山，半山腰观景台即可看全景，不必花¥35登万古楼。</p></div></li>
+        <li class="tl-item"><span class="tl-time">19:00</span><span class="tl-ico">🍖</span><div class="tl-main"><h4>晚餐：腊排骨火锅 AA <span class="cost">¥60–70</span></h4><p>去古城外寨后下段/象山市场一带吃，比古城内便宜近一半。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍜 当天吃什么</h4><ul><li>午：忠义市场 ¥20</li><li>晚：腊排骨火锅 ¥65</li></ul></div>
+        <div class="side-box"><h4>🏨 住宿（连住2晚）</h4><p>忠义市场/古城南门片区客栈，吃喝便宜、去束河白沙上车点多。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>丽江海拔2400m，首日不跑跳、不饮酒、多喝水</li><li>古城石板路滑，穿防滑运动鞋</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=100.225830,26.876468&name=丽江古城&mode=walk&coordinate=gaode&callnative=1">📍 高德导航：丽江古城</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🏮<img src="http://store.is.autonavi.com/showpic/79301b10705b92ec03da88565b18e0f5" alt="丽江古城" onerror="this.remove()"></div><div class="spot-info"><h5>丽江古城</h5><p>大水车·四方街·夜灯</p><span class="spot-fee">免费开放</span></div></div>
+    </div>
+  </div>
+
+  <!-- ===== D6 ===== -->
+  <div class="card day" id="day6">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>6</b></div>
+      <div><h3>10月6日 · 束河 · 白沙 · 黑龙潭（免费古镇日）</h3></div>
+      <div class="tags"><span class="tag city">丽江</span><span class="tag free">三大点位全免费</span><span class="tag">远眺玉龙雪山</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🍵</span><div class="tl-main"><h4>早餐：酥油茶+丽江粑粑 <span class="cost">¥12</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">08:40</span><span class="tl-ico">🚌</span><div class="tl-main"><h4>前往束河古镇 <span class="cost">¥2–5</span></h4><p>6路公交或扫共享电单车（约20分钟）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">09:00</span><span class="tl-ico">🏘️</span><div class="tl-main"><h4>束河古镇 <span class="cost zero">免费 · 约2.5h</span></h4><p>比大研安静十年的纳西古镇：青龙桥、九鼎龙潭、茶马古道博物馆。</p></div></li>
+        <li class="tl-item"><span class="tl-time">11:30</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>束河午餐 <span class="cost">¥30</span></h4><p>古镇边缘小馆吃纳西炒饭/烤鱼，避开主街餐厅。</p></div></li>
+        <li class="tl-item"><span class="tl-time">13:00</span><span class="tl-ico">🏔️</span><div class="tl-main"><h4>白沙古镇 <span class="cost zero">免费 · 约2.5h</span></h4><p>最原生态的纳西古镇，街头抬头就是玉龙雪山；白沙壁画¥30（可选）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">16:00</span><span class="tl-ico">💧</span><div class="tl-main"><h4>黑龙潭公园 <span class="cost zero">免费 · 凭身份证</span></h4><p>得月楼+玉龙雪山倒影，丽江经典机位；古城北端步行可达。</p></div></li>
+        <li class="tl-item"><span class="tl-time">18:30</span><span class="tl-ico">🐟</span><div class="tl-main"><h4>晚餐：纳西烤鱼/本地炒菜 <span class="cost">¥40</span></h4><p>顺手买嘉华鲜花饼伴手礼（现烤约¥30/盒）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">20:00</span><span class="tl-ico">🎒</span><div class="tl-main"><h4>收拾行李，早点休息</h4><p>明早赶火车。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🏔️ 关于玉龙雪山</h4><p>省钱主线远观即可。若坚持上雪山：进山费¥100+环保车¥20+大索道¥140+租氧气防寒服约¥80 ≈ <b>¥340</b>；大索道票仅在"丽江旅游集团"官方小程序发售，每天20:00放票，第三方加价都是坑。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>白沙/束河买水和小吃比大研便宜</li><li>雪山机位：白沙主街、黑龙潭得月楼</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=100.216933,26.953303&name=白沙古镇&mode=bus&coordinate=gaode&callnative=1">📍 高德导航：白沙古镇</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🏘️<img src="http://store.is.autonavi.com/showpic/eee4299d485c00aef3770e6a68a30103" alt="白沙古镇" onerror="this.remove()"></div><div class="spot-info"><h5>白沙古镇</h5><p>街头正对玉龙雪山</p><span class="spot-fee">免费</span></div></div>
+      <div class="spot"><div class="spot-img">🏔️</div><div class="spot-info"><h5>玉龙雪山（可选升级）</h5><p>白沙/黑龙潭远观即可，登顶约¥340</p><span class="spot-fee">远观免费</span></div></div>
+    </div>
+  </div>
+
+  <!-- ===== D7 ===== -->
+  <div class="card day" id="day7">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>7</b></div>
+      <div><h3>10月7日 · 丽江 → 昆明 → 成都（夜宿火车）</h3></div>
+      <div class="tags"><span class="tag city">返程日</span><span class="tag move">🚄+🚆</span><span class="tag">次日05:33抵蓉</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">07:00</span><span class="tl-ico">🚌</span><div class="tl-main"><h4>退房 → 丽江站 <span class="cost">¥2</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>动车 丽江 → 昆明 <span class="cost">二等座¥190</span></h4><p>车程约3–3.5小时，选08:00前后早班，中午前到昆明。</p></div></li>
+        <li class="tl-item"><span class="tl-time">11:30</span><span class="tl-ico">🚉</span><div class="tl-main"><h4>抵昆明站，寄存行李 <span class="cost">¥10</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">12:00</span><span class="tl-ico">🍲</span><div class="tl-main"><h4>午餐：最后一顿过桥米线 <span class="cost">¥30</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">13:30</span><span class="tl-ico">💐</span><div class="tl-main"><h4>斗南花市（地铁1号线）<span class="cost zero">免费逛</span></h4><p>亚洲最大鲜花交易市场，鲜花论斤卖、干花便宜，适合买伴手礼；不想跑可改逛免费的官渡古镇。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:00</span><span class="tl-ico">🚇</span><div class="tl-main"><h4>回昆明站取行李、候车</h4></div></li>
+        <li class="tl-item"><span class="tl-time">19:04</span><span class="tl-ico">🚆</span><div class="tl-main"><h4>K4880次 昆明 → 成都西 <span class="cost">硬卧¥221</span></h4><p>次日（10/8）05:33抵达成都西，地铁回家。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>✈️ 想10/7当晚到家？</h4><p>改丽江三义机场飞成都（约1.5h，提前30天买国庆票约¥400–700），比火车中转贵约¥100–300，但省一晚且当天到家。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>斗南花市傍晚批发最热闹，白天气氛一般，重在便宜</li><li>鲜切花不好带，买干花/鲜花饼更稳妥</li></ul></div>
+        <a class="amap-btn alt" target="_blank" href="https://uri.amap.com/search?keyword=斗南花市&city=昆明&coordinate=gaode&callnative=1">📍 高德导航：斗南花市</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 交通信息 ========== -->
+<section id="transport" class="wrap">
+  <div class="sec-title"><span class="ico">🚄</span><h2>交通信息（真实车次票价）</h2></div>
+  <p class="sec-desc">车次时刻为 2026年9月19日查询数据，国庆可能加开临客，购票以 12306 当日信息为准。</p>
+  <div class="card tbl-card">
+    <table>
+      <thead><tr><th>日期</th><th>车次</th><th>区间</th><th>时刻</th><th>历时</th><th>票价/人</th></tr></thead>
+      <tbody>
+        <tr><td class="num">10/1</td><td>K4761（普速）</td><td>成都西 → 昆明</td><td class="num">16:51 – 次日05:25</td><td class="num">12h34m</td><td class="num">硬卧¥221 / 硬座¥119</td></tr>
+        <tr><td class="num">10/3</td><td>D/C字头（每日30+班）</td><td>昆明 → 大理</td><td class="num">午后13:00–16:00多班可选</td><td class="num">约2h</td><td class="num">二等座¥145</td></tr>
+        <tr><td class="num">10/5</td><td>C373等（动车）</td><td>大理 → 丽江</td><td class="num">09:13 – 11:29（早班密集）</td><td class="num">约1.5–2h</td><td class="num">二等座¥72–80</td></tr>
+        <tr><td class="num">10/7</td><td>C/D字头（动车）</td><td>丽江 → 昆明</td><td class="num">08:00前后发车</td><td class="num">约3–3.5h</td><td class="num">二等座¥190</td></tr>
+        <tr><td class="num">10/7</td><td>K4880（普速）</td><td>昆明 → 成都西</td><td class="num">19:04 – 次日05:33</td><td class="num">10h29m</td><td class="num">硬卧¥221 / 硬座¥119</td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">大交通合计：221+145+80+190+221 = <b>¥857/人</b>。两段夜班硬卧各省一晚住宿费。备选返程：丽江直飞成都约¥400–700（1.5h）。</p>
+  </div>
+
+  <div class="info-grid" style="margin-top:16px;">
+    <div class="card info-card">
+      <h3>🚇 昆明市内</h3>
+      <ul>
+        <li>机场：地铁6号线进市区，约¥5</li>
+        <li>市区以<b>地铁+公交</b>为主，翠湖/金马坊地铁可达</li>
+        <li>去海埂大坝：地铁5号线直达</li>
+        <li>支付宝搜"昆明地铁"领乘车码</li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>🚌 大理市内</h3>
+      <ul>
+        <li>大理站↔古城：8路/三塔专线 <b>¥3</b></li>
+        <li>洱海廊道：租自行车 <b>¥15/天</b>（电驴禁入廊道）</li>
+        <li>古城↔喜洲：大丽线中巴 <b>¥8–10</b></li>
+        <li>古城↔双廊：客运站大巴约¥25/2h</li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>🚌 丽江市内</h3>
+      <ul>
+        <li>丽江站↔古城：18路/4路 <b>¥2</b></li>
+        <li>古城↔束河：6路公交或共享电驴</li>
+        <li>束河↔白沙：古镇旅游专线/小巴约¥5</li>
+        <li>全程不坐路边揽客"低价包车"</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 食宿信息 ========== -->
+<section id="stay" class="wrap">
+  <div class="sec-title"><span class="ico">🏨</span><h2>住宿怎么选（省钱原则：住城外、不住城内）</h2></div>
+  <p class="sec-desc">2人同行住标间人均最低；独行可选青旅床位。国庆务必提前 20 天以上订，选"免费取消"。</p>
+  <div class="info-grid">
+    <div class="card info-card">
+      <h3>📍 昆明（1晚）</h3>
+      <ul>
+        <li><b>区域：</b>昆明站 / 塘子巷 / 环城南路地铁口</li>
+        <li>理由：赶火车方便，地铁直达翠湖、海埂</li>
+        <li>青旅床位：<span class="price-tag">¥50–80</span></li>
+        <li>快捷/民宿标间：<span class="price-tag">¥200–280/间</span></li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>📍 大理（2晚）</h3>
+      <ul>
+        <li><b>区域：</b>古城南门外文献楼/双鹤路</li>
+        <li>理由：比古城内便宜约30%，步行进城5分钟</li>
+        <li>青旅床位：<span class="price-tag">¥50–90</span></li>
+        <li>民宿标间：<span class="price-tag">¥200–300/间</span></li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>📍 丽江（2晚）</h3>
+      <ul>
+        <li><b>区域：</b>忠义市场 / 古城南门片区</li>
+        <li>理由：小吃便宜、去束河白沙上车方便</li>
+        <li>青旅床位：<span class="price-tag">¥60–100</span></li>
+        <li>客栈标间：<span class="price-tag">¥220–320/间</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 美食 ========== -->
+<section id="food" class="wrap">
+  <div class="sec-title"><span class="ico">🍜</span><h2>吃什么（本地人市场最省）</h2></div>
+  <p class="sec-desc">原则：<strong>早点小吃在市场吃、正餐去古城外吃、古城主街只拍照不吃饭</strong>。</p>
+  <div class="food-grid">
+    <div class="card food-card">
+      <span class="city-ico">🌸</span><h3>昆明</h3>
+      <p class="where">篆新农贸市场 · 南强街巷 · 宝善街</p>
+      <div class="food-item"><span>小锅米线 / 豆花米线</span><em>¥10–15</em></div>
+      <div class="food-item"><span>建新园过桥米线</span><em>¥25–40</em></div>
+      <div class="food-item"><span>汽锅鸡（小馆拼餐）</span><em>¥40–60</em></div>
+      <div class="food-item"><span>烧饵块 / 烤乳扇</span><em>¥5–10</em></div>
+      <div class="food-item"><span>嘉华现烤鲜花饼</span><em>¥3–5/个</em></div>
+      <div class="food-item"><span>篆新市场豆花米线+奶白酒</span><em>¥15管饱</em></div>
+    </div>
+    <div class="card food-card">
+      <span class="city-ico">🌊</span><h3>大理</h3>
+      <p class="where">古城北门市场 · 人民路 · 喜洲四方街</p>
+      <div class="food-item"><span>凉鸡米线（再回首等）</span><em>¥12–18</em></div>
+      <div class="food-item"><span>耙肉饵丝 / 稀豆粉</span><em>¥10–15</em></div>
+      <div class="food-item"><span>喜洲粑粑（甜/咸）</span><em>¥8–12</em></div>
+      <div class="food-item"><span>白族酸辣鱼（城外AA）</span><em>¥40–50</em></div>
+      <div class="food-item"><span>烤乳扇 / 雕梅</span><em>¥5–10</em></div>
+      <div class="food-item"><span>⚠️ 生皮慎吃，选卫生口碑店</span><em>—</em></div>
+    </div>
+    <div class="card food-card">
+      <span class="city-ico">🏮</span><h3>丽江</h3>
+      <p class="where">忠义市场 · 象山市场 · 寨后下段</p>
+      <div class="food-item"><span>鸡豆凉粉 / 丽江粑粑</span><em>¥5–10</em></div>
+      <div class="food-item"><span>纳西烤鱼 / 米灌肠</span><em>¥15–25</em></div>
+      <div class="food-item"><span>腊排骨火锅（城外AA）</span><em>¥60–70</em></div>
+      <div class="food-item"><span>酥油茶 / 烤饵块</span><em>¥8–12</em></div>
+      <div class="food-item"><span>野生菌火锅（可选放纵餐）</span><em>¥80+</em></div>
+      <div class="food-item"><span>野生菌务必煮熟，不自行加工</span><em>—</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 预算 ========== -->
+<section id="budget" class="wrap">
+  <div class="sec-title"><span class="ico">💰</span><h2>预算明细（按人计算）</h2></div>
+  <p class="sec-desc">点击切换三种省钱档位；价格为 2026 国庆参考，住宿越早订越便宜。</p>
+  <div class="budget-modes no-print">
+    <button class="mode-btn" data-mode="s">🪙 极限穷游 ¥2000档</button>
+    <button class="mode-btn active" data-mode="m">⭐ 主推拼房 ¥2400档</button>
+    <button class="mode-btn" data-mode="c">🛏️ 舒适版 ¥3000档</button>
+  </div>
+  <div class="card budget-card">
+    <div class="tbl-card">
+      <table>
+        <thead><tr><th>项目</th><th>明细</th><th>金额/人</th></tr></thead>
+        <tbody id="budget-body">
+          <tr><td>🚆 大交通</td><td>成都↔云南4段火车（硬卧+动车）</td><td class="num" id="b-transport">¥857</td></tr>
+          <tr><td>🚌 市内交通</td><td>地铁/公交/自行车/中巴，全程约90</td><td class="num" id="b-local">¥90</td></tr>
+          <tr><td>🏨 住宿</td><td id="stay-desc">5晚酒店（昆明1+大理2+丽江2），2人拼标间人均</td><td class="num" id="b-stay">¥620</td></tr>
+          <tr><td>🍜 餐饮</td><td id="food-desc">约¥90/天 × 7天，市场小吃+1–2顿火锅</td><td class="num" id="b-food">¥630</td></tr>
+          <tr><td>🎫 门票</td><td id="ticket-desc">主线全免费，预留木府/壁画等小额门票</td><td class="num" id="b-ticket">¥60</td></tr>
+          <tr><td>🎒 其他</td><td id="other-desc">水、零食、氧气罐、鲜花饼伴手礼</td><td class="num" id="b-other">¥150</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="budget-total">
+      <div>每人合计 <span class="big" id="budget-per">¥2,407</span></div>
+      <div class="two">2人总花费约 <b id="budget-two">¥4,814</b></div>
+      <div class="hint" id="budget-hint">不含个人购物；返程若改直飞，每人再加约¥180–480差价。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 穿衣指南 ========== -->
+<section id="wear" class="wrap">
+  <div class="sec-title"><span class="ico">🧥</span><h2>穿衣指南（洋葱式穿搭）</h2></div>
+  <p class="sec-desc">10月初云南"一天有四季"：白天短袖、早晚加外套、丽江夜里像深秋。</p>
+  <div class="wear-grid">
+    <div class="card wear-card">
+      <h3>🌸 昆明　15–26℃</h3>
+      <p class="temp">多云有阵雨 · 最暖和</p>
+      <ul>
+        <li>白天：短袖 / 薄长袖</li>
+        <li>早晚：薄针织衫或防风外套</li>
+        <li>阵雨随身：折叠伞</li>
+      </ul>
+    </div>
+    <div class="card wear-card">
+      <h3>🌊 大理　15–27℃</h3>
+      <p class="temp">小雨转多云 · 洱海风大</p>
+      <ul>
+        <li>白天：短袖+防晒袖套（骑行刚需）</li>
+        <li>早晚：冲锋衣/薄风衣</li>
+        <li>帽子、墨镜、SPF50+防晒霜</li>
+      </ul>
+    </div>
+    <div class="card wear-card">
+      <h3>🏔️ 丽江　13–24℃</h3>
+      <p class="temp">阵雨 · 早晚冷 · 海拔2400m</p>
+      <ul>
+        <li>白天：长袖+薄外套</li>
+        <li>夜里：厚外套/轻薄羽绒</li>
+        <li>上玉龙雪山需防风厚外套（可租）</li>
+        <li>防滑运动鞋（古城石板路）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3 style="padding:18px 24px 4px;font-size:15.5px;">🎒 行李清单（打勾用）</h3>
+    <ul class="checklist">
+      <li>身份证（必备，讲武堂/黑龙潭要查验）</li>
+      <li>学生证（收费景点半价）</li>
+      <li>薄外套 + 厚外套各一件</li>
+      <li>折叠伞 / 轻便雨衣</li>
+      <li>SPF50+防晒霜、墨镜、遮阳帽</li>
+      <li>润唇膏、保湿霜（高原干燥）</li>
+      <li>充电宝（≤100Wh，火车飞机均可带）</li>
+      <li>常用药：感冒药、肠胃药、创可贴</li>
+      <li>小瓶氧气（丽江药店¥15，比雪山便宜）</li>
+      <li>保温杯（车站古城都有热水）</li>
+      <li>防滑运动鞋 + 一双拖鞋</li>
+      <li>耳塞眼罩（两晚夜火车刚需）</li>
+      <li>少量现金（¥200左右应急）</li>
+      <li>干粮零食（火车上吃，省餐车费）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== 实用信息 ========== -->
+<section id="tips" class="wrap">
+  <div class="sec-title"><span class="ico">📞</span><h2>紧急电话 & 避坑指南</h2></div>
+  <div class="sos-grid" style="margin-bottom:22px;">
+    <div class="card sos-item"><div class="n">110</div><div class="t">报警</div></div>
+    <div class="card sos-item"><div class="n">119</div><div class="t">火警</div></div>
+    <div class="card sos-item"><div class="n">120</div><div class="t">急救</div></div>
+    <div class="card sos-item"><div class="n">12345</div><div class="t">政务/旅游投诉热线</div></div>
+    <div class="card sos-item"><div class="n">12306</div><div class="t">铁路客服</div></div>
+    <div class="card sos-item"><div class="n">12328</div><div class="t">交通服务监督</div></div>
+    <div class="card sos-item"><div class="n">0871-12345</div><div class="t">云南省旅游投诉</div></div>
+    <div class="card sos-item"><div class="n">丽江·市人民医院</div><div class="t">高反严重就近就医</div></div>
+  </div>
+
+  <div class="trap-grid">
+    <div class="card trap-item"><span class="x">✕</span><div><h4>"低价一日游/免费骑马"</h4><p>古城门口主动搭话的拉市海、雪山一日游多为购物团，门票交通加价数倍。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>玉石银器茶叶不懂不买</h4><p>景区店水深，导游带去的"产地直销"一律不买；鲜花饼认准嘉华等连锁。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>洱海电驴闯廊道</h4><p>生态廊道禁止机动车和电动车，租电驴只能走外围公路；廊道内租自行车。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>雪山索道票找第三方</h4><p>大索道票只在"丽江旅游集团"官方小程序发售（每天20:00放票），代抢加价均为坑。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>火车站门口拼车</h4><p>大理/丽江站口"10元送到客栈"常绑定消费，坚持坐公交（¥2–3）。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>夜火车票临期买</h4><p>国庆 K4761/K4880 硬卧秒空，放票即抢+候补；省内动车提前1–2天买早班。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>野生菌自己加工</h4><p>10月仍有菌子，只在正规餐馆吃且务必煮够时间，不买路边散装自行加工。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>到丽江就剧烈运动</h4><p>海拔2400m，首日慢走、不喝酒、多喝水；头痛气短就休息吸氧，别硬撑上雪山。</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <p>本攻略由高德地图 MCP 实时数据（天气 · POI坐标 · 路线）+ 12306 公开票价（2026-09-19 查询）整理，价格与时刻仅供出行参考，请以官方平台当日信息为准。</p>
+  <p style="margin-top:6px;">祝旅途顺利，玩得开心还省钱 🏔️🚆🍜</p>
+</footer>
+
+<script>
+// ========== 预算三档切换数据（单位：元/人） ==========
+var BUDGET_DATA = {
+  s: { // 极限穷游：青旅床位 + 严控吃喝 + 零收费景点
+    transport:857, local:90, stay:400, food:560, ticket:0, other:100,
+    stayDesc:'5晚青旅床位（昆明50+大理70×2+丽江90×2，国庆价）',
+    foodDesc:'约¥80/天 × 7天，以市场小吃和米线为主',
+    ticketDesc:'全程只逛免费点位',
+    otherDesc:'基础水饮+少量零食',
+    hint:'极限档：两晚住火车+5晚青旅床位，全程免费景点，适合学生党。'
+  },
+  m: { // 主推：2人拼标间 + 正常吃饭 + 少量门票
+    transport:857, local:90, stay:620, food:630, ticket:60, other:150,
+    stayDesc:'5晚酒店（昆明1+大理2+丽江2），2人拼标间人均',
+    foodDesc:'约¥90/天 × 7天，市场小吃+1–2顿火锅',
+    ticketDesc:'主线全免费，预留木府/壁画等小额门票',
+    otherDesc:'水、零食、氧气罐、鲜花饼伴手礼',
+    hint:'推荐档：2人拼标间人均¥100–130/晚，吃得好也花得少。返程若改直飞，每人再加约¥180–480差价。'
+  },
+  c: { // 舒适：标间独住或升级民宿 + 放开吃
+    transport:857, local:120, stay:750, food:840, ticket:200, other:250,
+    stayDesc:'5晚品质民宿/快捷（人均约¥150/晚），含部分古城内',
+    foodDesc:'约¥120/天 × 7天，含菌子火锅/酸辣鱼等特色餐',
+    ticketDesc:'木府+白沙壁画+万古楼等收费点',
+    otherDesc:'伴手礼、咖啡、应急备用金',
+    hint:'舒适档仍以火车出行；若再升级玉龙雪山一日游，人均再加约¥340。'
+  }
+};
+
+// 千分位格式化
+function formatMoney(num){
+  return '¥' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+// 切换预算档位并刷新表格
+function switchBudgetMode(mode){
+  var d = BUDGET_DATA[mode];
+  document.getElementById('b-transport').textContent = formatMoney(d.transport);
+  document.getElementById('b-local').textContent = formatMoney(d.local);
+  document.getElementById('b-stay').textContent = formatMoney(d.stay);
+  document.getElementById('b-food').textContent = formatMoney(d.food);
+  document.getElementById('b-ticket').textContent = d.ticket === 0 ? '¥0' : formatMoney(d.ticket);
+  document.getElementById('b-other').textContent = formatMoney(d.other);
+  document.getElementById('stay-desc').textContent = d.stayDesc;
+  document.getElementById('food-desc').textContent = d.foodDesc;
+  document.getElementById('ticket-desc').textContent = d.ticketDesc;
+  document.getElementById('other-desc').textContent = d.otherDesc;
+  var total = d.transport + d.local + d.stay + d.food + d.ticket + d.other;
+  document.getElementById('budget-per').textContent = formatMoney(total);
+  document.getElementById('budget-two').textContent = formatMoney(total * 2);
+  document.getElementById('budget-hint').textContent = d.hint;
+}
+
+// 绑定档位按钮
+document.querySelectorAll('.mode-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.mode-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    switchBudgetMode(btn.getAttribute('data-mode'));
+  });
+});
+
+// 图片加载失败时，移除 <img> 后给父容器加降级样式（显示 emoji + 渐变底）
+document.querySelectorAll('.spot-img img').forEach(function(img){
+  img.addEventListener('error', function(){
+    img.remove();
+    img.parentElement.classList.add('img-fallback');
+  });
+});
+</script>
+</body>
+</html>

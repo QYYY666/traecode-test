@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成都 → 重庆 三日游旅行攻略</title>
+<style>
+  /* 全局样式 */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #e63946;
+    --primary-dark: #c1121f;
+    --accent: #f4a261;
+    --dark: #1d3557;
+    --gray: #6c757d;
+    --light: #f8f9fa;
+    --bg: #fafafa;
+  }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: #333;
+    line-height: 1.6;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* 头部横幅 */
+  .hero {
+    background: linear-gradient(135deg, #1d3557 0%, #e63946 100%);
+    color: #fff;
+    padding: 60px 20px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero h1 { font-size: 2.5em; margin-bottom: 10px; position: relative; }
+  .hero .subtitle { font-size: 1.2em; opacity: 0.9; margin-bottom: 20px; position: relative; }
+  .hero .meta { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; position: relative; }
+  .hero .meta-item { display: flex; align-items: center; gap: 8px; font-size: 1em; }
+
+  /* 天气卡片 */
+  .weather-section { padding: 40px 0; background: #fff; }
+  .section-title {
+    font-size: 1.8em; text-align: center; margin-bottom: 30px;
+    color: var(--dark); position: relative;
+  }
+  .section-title::after {
+    content: ""; display: block; width: 60px; height: 3px;
+    background: var(--primary); margin: 10px auto 0; border-radius: 2px;
+  }
+  .weather-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .weather-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 12px; padding: 20px; text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .weather-card .date { font-size: 0.9em; color: var(--gray); margin-bottom: 8px; }
+  .weather-card .icon { font-size: 2em; margin: 8px 0; }
+  .weather-card .temp { font-size: 1.4em; font-weight: bold; color: var(--dark); }
+  .weather-card .desc { font-size: 0.9em; color: var(--gray); margin-top: 4px; }
+
+  /* 行程卡片 */
+  .itinerary-section { padding: 40px 0; background: var(--bg); }
+  .day-card {
+    background: #fff; border-radius: 16px; margin-bottom: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06); overflow: hidden;
+  }
+  .day-header {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff; padding: 20px 30px; display: flex;
+    justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
+  }
+  .day-header h2 { font-size: 1.5em; }
+  .day-header .day-tag {
+    background: rgba(255,255,255,0.2); padding: 4px 14px;
+    border-radius: 20px; font-size: 0.9em;
+  }
+  .day-body { padding: 30px; }
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before {
+    content: ""; position: absolute; left: 8px; top: 5px; bottom: 5px;
+    width: 2px; background: #e0e0e0;
+  }
+  .timeline-item { position: relative; margin-bottom: 25px; }
+  .timeline-item::before {
+    content: ""; position: absolute; left: -27px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--primary); border: 2px solid #fff;
+    box-shadow: 0 0 0 2px var(--primary);
+  }
+  .timeline-time {
+    font-size: 0.85em; color: var(--primary); font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .timeline-title { font-size: 1.1em; font-weight: 600; color: var(--dark); margin-bottom: 4px; }
+  .timeline-desc { font-size: 0.95em; color: #555; }
+  .timeline-tag {
+    display: inline-block; background: #fff3e0; color: var(--accent);
+    font-size: 0.75em; padding: 2px 8px; border-radius: 10px; margin-left: 6px;
+  }
+
+  /* 景点卡片网格 */
+  .spots-section { padding: 40px 0; background: #fff; }
+  .spots-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .spot-card {
+    border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .spot-card:hover { transform: translateY(-4px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .spot-img {
+    height: 180px; background-size: cover; background-position: center;
+    background-color: #e0e0e0;
+  }
+  .spot-info { padding: 16px; }
+  .spot-name { font-size: 1.1em; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .spot-addr { font-size: 0.85em; color: var(--gray); margin-bottom: 8px; }
+  .spot-coord { font-size: 0.8em; color: var(--primary); font-family: monospace; }
+
+  /* 美食 */
+  .food-section { padding: 40px 0; background: var(--bg); }
+  .food-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .food-card {
+    background: #fff; border-radius: 12px; padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--primary);
+  }
+  .food-name { font-size: 1.1em; font-weight: 600; color: var(--dark); margin-bottom: 6px; }
+  .food-addr { font-size: 0.85em; color: var(--gray); }
+
+  /* 交通 */
+  .transport-section { padding: 40px 0; background: #fff; }
+  .transport-card {
+    background: var(--light); border-radius: 12px; padding: 24px;
+    margin-bottom: 16px; display: flex; gap: 20px; align-items: center;
+    flex-wrap: wrap;
+  }
+  .transport-icon {
+    width: 50px; height: 50px; border-radius: 50%;
+    background: var(--primary); color: #fff; display: flex;
+    align-items: center; justify-content: center; font-size: 1.3em;
+    flex-shrink: 0;
+  }
+  .transport-detail h3 { color: var(--dark); margin-bottom: 6px; }
+  .transport-detail p { font-size: 0.9em; color: #555; }
+
+  /* 地图区域 */
+  .map-section { padding: 40px 0; background: var(--bg); }
+  .map-container {
+    background: #fff; border-radius: 16px; padding: 30px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .map-svg { width: 100%; height: auto; }
+  .map-legend {
+    display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px;
+    justify-content: center; font-size: 0.9em;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+
+  /* 实用贴士 */
+  .tips-section { padding: 40px 0; background: #fff; }
+  .tips-list { list-style: none; }
+  .tips-list li {
+    padding: 14px 20px; background: var(--light); border-radius: 8px;
+    margin-bottom: 10px; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .tips-list li::before { content: "💡"; flex-shrink: 0; }
+
+  /* 页脚 */
+  footer {
+    background: var(--dark); color: #fff; text-align: center;
+    padding: 30px 20px; font-size: 0.9em;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* 响应式 */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 1.8em; }
+    .hero .meta { gap: 15px; }
+    .day-header { padding: 16px 20px; }
+    .day-body { padding: 20px; }
+    .section-title { font-size: 1.4em; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 头部 -->
+<header class="hero">
+  <div class="container">
+    <h1>🌶️ 成都 → 重庆 三日游</h1>
+    <p class="subtitle">山城雾都 · 8D 魔幻 · 火锅江湖</p>
+    <div class="meta">
+      <span class="meta-item">📅 2026.09.24 - 09.26</span>
+      <span class="meta-item">🚄 高铁直达</span>
+      <span class="meta-item">🌡️ 22~28℃</span>
+      <span class="meta-item">💰 舒适预算</span>
+    </div>
+  </div>
+</header>
+
+<!-- 天气 -->
+<section class="weather-section">
+  <div class="container">
+    <h2 class="section-title">天气状况</h2>
+    <div class="weather-grid">
+      <div class="weather-card">
+        <div class="date">9月24日 周四</div>
+        <div class="icon">⛅</div>
+        <div class="temp">28 / 23℃</div>
+        <div class="desc">阴转小雨</div>
+      </div>
+      <div class="weather-card">
+        <div class="date">9月25日 周五</div>
+        <div class="icon">🌧️</div>
+        <div class="temp">27 / 22℃</div>
+        <div class="desc">阴转大雨</div>
+      </div>
+      <div class="weather-card">
+        <div class="date">9月26日 周六</div>
+        <div class="icon">🌧️</div>
+        <div class="temp">25 / 22℃</div>
+        <div class="desc">小雨转中雨</div>
+      </div>
+      <div class="weather-card">
+        <div class="date">9月27日 周日</div>
+        <div class="icon">🌧️</div>
+        <div class="temp">26 / 22℃</div>
+        <div class="desc">小雨</div>
+      </div>
+    </div>
+    <p style="text-align:center; margin-top:20px; color:var(--gray); font-size:0.9em;">
+      ⚠️ 中秋前后重庆多阴雨，建议携带折叠伞和防滑鞋；山城步道湿滑，注意安全
+    </p>
+  </div>
+</section>
+
+<!-- 行程 -->
+<section class="itinerary-section">
+  <div class="container">
+    <h2 class="section-title">三日行程规划</h2>
+
+    <!-- Day 1 -->
+    <div class="day-card">
+      <div class="day-header">
+        <h2>Day 1 · 渝中半岛夜游</h2>
+        <span class="day-tag">9月24日 周四</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">08:00 - 10:00</div>
+            <div class="timeline-title">成都东站出发</div>
+            <div class="timeline-desc">乘高铁 G8501（成都东 08:00 → 重庆北 09:55），约 1h55m，二等座 ≈ ¥154</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">10:30 - 12:00</div>
+            <div class="timeline-title">抵达重庆，入住解放碑附近酒店</div>
+            <div class="timeline-desc">重庆北站 → 地铁 10 号线转 2 号线 → 临江门站，约 40 分钟</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">12:00 - 13:30</div>
+            <div class="timeline-title">午餐：重庆小面</div>
+            <div class="timeline-desc">解放碑附近随便一家小面馆，豌杂面/牛肉面是标配 <span class="timeline-tag">美食</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">14:00 - 16:30</div>
+            <div class="timeline-title">解放碑步行街 + 八一好吃街</div>
+            <div class="timeline-desc">重庆地标打卡，好吃街尝酸辣粉、山城小汤圆、烤脑花</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">17:00 - 18:30</div>
+            <div class="timeline-title">长江索道</div>
+            <div class="timeline-desc">新华路 151 号北站，单程 ¥20，横跨长江俯瞰两岸 <span class="timeline-tag">必体验</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">19:00 - 21:30</div>
+            <div class="timeline-title">洪崖洞夜景</div>
+            <div class="timeline-desc">嘉陵江滨江路 88 号，11 层吊脚楼亮灯后如《千与千寻》；千厮门大桥拍全景最佳</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-card">
+      <div class="day-header">
+        <h2>Day 2 · 古镇与文艺</h2>
+        <span class="day-tag">9月25日 周五</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">08:30 - 09:30</div>
+            <div class="timeline-title">前往磁器口古镇</div>
+            <div class="timeline-desc">地铁 1 号线 → 磁器口站，沙坪坝区磁器口古镇</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">09:30 - 12:30</div>
+            <div class="timeline-title">磁器口古镇漫游</div>
+            <div class="timeline-desc">千年古镇，青石板路、吊脚楼；尝毛血旺、陈麻花、千张皮 <span class="timeline-tag">古镇</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">13:00 - 14:30</div>
+            <div class="timeline-title">午餐：古镇鸡杂/毛血旺</div>
+            <div class="timeline-desc">磁器口"多一处鸡杂"或"茂庄古镇鸡杂"，人均 ¥60</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">15:00 - 16:00</div>
+            <div class="timeline-title">李子坝轻轨穿楼</div>
+            <div class="timeline-desc">地铁 2 号线李子坝站，出站到观景平台拍轻轨穿楼奇观</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">16:30 - 18:30</div>
+            <div class="timeline-title">鹅岭二厂文创公园</div>
+            <div class="timeline-desc">鹅岭正街 1 号，工业风文艺打卡地，《从你的全世界路过》取景地</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">19:30 - 21:30</div>
+            <div class="timeline-title">南山一棵树观景台</div>
+            <div class="timeline-desc">俯瞰重庆全城夜景，万家灯火如星河 <span class="timeline-tag">夜景</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-card">
+      <div class="day-header">
+        <h2>Day 3 · 武隆天坑奇观</h2>
+        <span class="day-tag">9月26日 周六</span>
+      </div>
+      <div class="day-body">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">07:00 - 09:30</div>
+            <div class="timeline-title">重庆 → 武隆</div>
+            <div class="timeline-desc">重庆北站乘火车至武隆站（约 2h），或跟团一日游（含往返接送）</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">10:00 - 13:30</div>
+            <div class="timeline-title">武隆天生三桥风景区</div>
+            <div class="timeline-desc">世界自然遗产，天龙桥、青龙桥、黑龙桥三座天然石拱桥；《满城尽带黄金甲》《变形金刚 4》取景地 <span class="timeline-tag">5A 景区</span></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">13:30 - 14:30</div>
+            <div class="timeline-title">午餐：武隆碗碗羊肉</div>
+            <div class="timeline-desc">景区附近农家菜馆，当地特色羊肉汤锅</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">15:00 - 17:00</div>
+            <div class="timeline-title">龙水峡地缝（可选）</div>
+            <div class="timeline-desc">与天生三桥联票，地缝幽深，瀑布飞溅</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-time">17:30 - 20:00</div>
+            <div class="timeline-title">返回重庆</div>
+            <div class="timeline-desc">武隆站乘火车回重庆北站，结束愉快旅程</div>
+          </div>
+        </div>
+        <p style="margin-top:15px; padding:12px; background:#fff3e0; border-radius:8px; font-size:0.9em;">
+          💡 <strong>替代方案</strong>：如不想去武隆（往返较远），Day 3 可改为市区深度游：大足石刻（早出晚归）或市区博物馆+白象居+鹅岭公园。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 景点卡片 -->
+<section class="spots-section">
+  <div class="container">
+    <h2 class="section-title">核心景点</h2>
+    <div class="spots-grid">
+      <div class="spot-card">
+        <div class="spot-img" style="background-image:url('http://store.is.autonavi.com/showpic/d69a8d621edd4c1fc967029ac5011785')"></div>
+        <div class="spot-info">
+          <div class="spot-name">洪崖洞民俗风貌区</div>
+          <div class="spot-addr">嘉陵江滨江路 88 号</div>
+          <div class="spot-coord">106.578192, 29.561999</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-img" style="background-image:url('http://store.is.autonavi.com/showpic/16df69e9d7e0d24e361b93c9694209cd')"></div>
+        <div class="spot-info">
+          <div class="spot-name">重庆长江索道</div>
+          <div class="spot-addr">新华路 151 号（北站）</div>
+          <div class="spot-coord">106.582000, 29.558000</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-img" style="background-color:#3a5a40; background-image:linear-gradient(135deg,#3a5a40,#588157); display:flex; align-items:center; justify-content:center; color:#fff; font-size:3em;">🏯</div>
+        <div class="spot-info">
+          <div class="spot-name">磁器口古镇</div>
+          <div class="spot-addr">沙坪坝区磁器口</div>
+          <div class="spot-coord">106.449705, 29.581184</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-img" style="background-color:#457b9d; background-image:linear-gradient(135deg,#457b9d,#1d3557); display:flex; align-items:center; justify-content:center; color:#fff; font-size:3em;">🚇</div>
+        <div class="spot-info">
+          <div class="spot-name">李子坝轻轨穿楼</div>
+          <div class="spot-addr">李子坝正街</div>
+          <div class="spot-coord">106.535000, 29.550000</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-img" style="background-image:url('https://store.is.autonavi.com/showpic/76d20de8bce5507b0000002814456232')"></div>
+        <div class="spot-info">
+          <div class="spot-name">鹅岭二厂文创公园</div>
+          <div class="spot-addr">鹅岭正街 1 号</div>
+          <div class="spot-coord">106.540000, 29.545000</div>
+        </div>
+      </div>
+      <div class="spot-card">
+        <div class="spot-img" style="background-image:url('http://store.is.autonavi.com/showpic/e6fe25b445e04e5d48344d4927386e0a')"></div>
+        <div class="spot-info">
+          <div class="spot-name">武隆天生三桥</div>
+          <div class="spot-addr">武隆区仙女山街道</div>
+          <div class="spot-coord">107.790000, 29.480000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 路线地图 -->
+<section class="map-section">
+  <div class="container">
+    <h2 class="section-title">路线地图</h2>
+    <div class="map-container">
+      <svg class="map-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- 背景 -->
+        <defs>
+          <linearGradient id="mapBg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#e8f4f8"/>
+            <stop offset="100%" stop-color="#d4e8d4"/>
+          </linearGradient>
+        </defs>
+        <rect width="800" height="500" fill="url(#mapBg)" rx="12"/>
+        
+        <!-- 长江 -->
+        <path d="M 0 350 Q 200 320 400 340 T 800 360" stroke="#4a90d9" stroke-width="40" fill="none" opacity="0.3"/>
+        <path d="M 0 350 Q 200 320 400 340 T 800 360" stroke="#74b9ff" stroke-width="2" fill="none" stroke-dasharray="5,5"/>
+        <text x="380" y="335" font-size="14" fill="#2d5a8a" font-weight="bold">长 江</text>
+        
+        <!-- Day 1 路线（渝中半岛） -->
+        <path d="M 350 280 L 380 250 L 420 270 L 380 310" 
+              stroke="#e63946" stroke-width="3" fill="none" stroke-dasharray="8,4" opacity="0.7"/>
+        
+        <!-- Day 2 路线 -->
+        <path d="M 380 310 L 200 200 L 300 280 L 350 280" 
+              stroke="#2a9d8f" stroke-width="3" fill="none" stroke-dasharray="8,4" opacity="0.7"/>
+        
+        <!-- Day 3 路线（外扩到武隆） -->
+        <path d="M 380 280 L 650 150" 
+              stroke="#f4a261" stroke-width="3" fill="none" stroke-dasharray="8,4" opacity="0.7"/>
+        
+        <!-- 景点标记 -->
+        <!-- 解放碑 -->
+        <circle cx="380" cy="250" r="8" fill="#e63946" stroke="#fff" stroke-width="2"/>
+        <text x="395" y="245" font-size="12" fill="#333">解放碑</text>
+        
+        <!-- 洪崖洞 -->
+        <circle cx="420" cy="270" r="8" fill="#e63946" stroke="#fff" stroke-width="2"/>
+        <text x="435" y="265" font-size="12" fill="#333">洪崖洞</text>
+        
+        <!-- 长江索道 -->
+        <circle cx="380" cy="280" r="8" fill="#e63946" stroke="#fff" stroke-width="2"/>
+        <text x="395" y="285" font-size="12" fill="#333">长江索道</text>
+        
+        <!-- 磁器口 -->
+        <circle cx="200" cy="200" r="8" fill="#2a9d8f" stroke="#fff" stroke-width="2"/>
+        <text x="215" y="195" font-size="12" fill="#333">磁器口</text>
+        
+        <!-- 李子坝 -->
+        <circle cx="300" cy="280" r="8" fill="#2a9d8f" stroke="#fff" stroke-width="2"/>
+        <text x="315" y="275" font-size="12" fill="#333">李子坝</text>
+        
+        <!-- 鹅岭二厂 -->
+        <circle cx="350" cy="280" r="8" fill="#2a9d8f" stroke="#fff" stroke-width="2"/>
+        <text x="365" y="280" font-size="12" fill="#333">鹅岭二厂</text>
+        
+        <!-- 武隆天生三桥 -->
+        <circle cx="650" cy="150" r="10" fill="#f4a261" stroke="#fff" stroke-width="2"/>
+        <text x="665" y="145" font-size="12" fill="#333" font-weight="bold">武隆天生三桥</text>
+        
+        <!-- 图例 -->
+        <text x="20" y="30" font-size="13" fill="#333" font-weight="bold">行程路线示意</text>
+      </svg>
+      <div class="map-legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#e63946"></span>Day 1 渝中半岛</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#2a9d8f"></span>Day 2 古镇文艺线</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#f4a261"></span>Day 3 武隆天坑</div>
+      </div>
+      <p style="text-align:center; margin-top:15px; color:var(--gray); font-size:0.85em;">
+        注：上图为路线示意图，非精确地理比例。实际导航请使用高德地图 App
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- 美食 -->
+<section class="food-section">
+  <div class="container">
+    <h2 class="section-title">必吃美食</h2>
+    <div class="food-list">
+      <div class="food-card">
+        <div class="food-name">🍲 重庆火锅</div>
+        <div class="food-addr">推荐：枇杷山熊猫火锅（枇杷山正街 70 号）、大东匠人老火锅（八一路店）</div>
+        <p style="font-size:0.85em; color:#555; margin-top:6px;">牛油红汤锅底，毛肚、鸭肠、黄喉必点</p>
+      </div>
+      <div class="food-card">
+        <div class="food-name">🍜 重庆小面</div>
+        <div class="food-addr">推荐：姜氏正宗重庆小面（九尺坎 51 号）</div>
+        <p style="font-size:0.85em; color:#555; margin-top:6px;">豌杂面、牛肉面，麻辣鲜香，早餐首选</p>
+      </div>
+      <div class="food-card">
+        <div class="food-name">🍢 磁器口毛血旺</div>
+        <div class="food-addr">磁器口古镇内</div>
+        <p style="font-size:0.85em; color:#555; margin-top:6px;">鸭血、毛肚、黄喉一锅烩，重口味代表</p>
+      </div>
+      <div class="food-card">
+        <div class="food-name">🍰 山城小汤圆</div>
+        <div class="food-addr">解放碑八一好吃街</div>
+        <p style="font-size:0.85em; color:#555; margin-top:6px;">黑芝麻馅，软糯香甜，解辣神器</p>
+      </div>
+      <div class="food-card">
+        <div class="food-name">🍖 武隆碗碗羊肉</div>
+        <div class="food-addr">武隆景区附近农家菜馆</div>
+        <p style="font-size:0.85em; color:#555; margin-top:6px;">当地特色，羊肉鲜嫩，汤鲜味美</p>
+      </div>
+      <div class="food-card">
+        <div class="food-name">🥟 酸辣粉</div>
+        <div class="food-addr">好又来酸辣粉（解放碑八一路）</div>
+        <p style="font-size:0.85em; color:#555; margin-top:6px;">红薯粉酸辣开胃，重庆街头标配</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 交通 -->
+<section class="transport-section">
+  <div class="container">
+    <h2 class="section-title">交通指南</h2>
+    <div class="transport-card">
+      <div class="transport-icon">🚄</div>
+      <div class="transport-detail">
+        <h3>成都 → 重庆（高铁）</h3>
+        <p>成都东站 → 重庆北站，约 1h55m，二等座 ≈ ¥154。推荐 G8501（08:00 发车）</p>
+      </div>
+    </div>
+    <div class="transport-card">
+      <div class="transport-icon">🚇</div>
+      <div class="transport-detail">
+        <h3>市内交通</h3>
+        <p>重庆轨道交通 1/2/3/6/10 号线覆盖主要景点；磁器口（1 号线）、李子坝（2 号线）、解放碑（2 号线临江门）</p>
+      </div>
+    </div>
+    <div class="transport-card">
+      <div class="transport-icon">🚠</div>
+      <div class="transport-detail">
+        <h3>长江索道</h3>
+        <p>新华路北站 ↔ 上新街南站，单程 ¥20，往返 ¥30，运行 07:30-22:30</p>
+      </div>
+    </div>
+    <div class="transport-card">
+      <div class="transport-icon">🚗</div>
+      <div class="transport-detail">
+        <h3>武隆往返</h3>
+        <p>重庆北站 → 武隆站火车约 2h，或跟团一日游（含接送更省心）</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 实用贴士 -->
+<section class="tips-section">
+  <div class="container">
+    <h2 class="section-title">实用贴士</h2>
+    <ul class="tips-list">
+      <li>中秋前后重庆多阴雨，务必携带折叠伞和防滑鞋；山城步道湿滑注意安全</li>
+      <li>重庆是"8D 魔幻城市"，地图导航可能不准，多问路人；同一地址可能有多个楼层入口</li>
+      <li>洪崖洞最佳观赏点在千厮门大桥上，19:00 亮灯后最出片，建议提前占位</li>
+      <li>长江索道建议下午 4-5 点乘坐，可看日落+夜景，单程即可（南站有公交回市区）</li>
+      <li>磁器口上午人少，下午和晚上人多；古镇内小吃价格偏高，可少量尝试</li>
+      <li>武隆天生三桥门票 ¥125（含观光车），建议提前在网上购票，跟团更方便</li>
+      <li>重庆火锅辣度分级，不太能吃辣选"微辣"或"鸳鸯锅"，油碟必点（解辣）</li>
+      <li>住宿首选解放碑/洪崖洞附近，夜景好、交通便利，步行可达多个景点</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>成都 → 重庆 三日游旅行攻略 | 数据来源：高德地图 MCP | 制作于 2026-09-19</p>
+  <p style="margin-top:8px; opacity:0.7;">祝你旅途愉快 🌶️</p>
+</footer>
+
+</body>
+</html>
