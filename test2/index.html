@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇小游戏</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 游戏标题 -->
+        <header class="game-header">
+            <h1>🐍 贪吃蛇</h1>
+        </header>
+
+        <!-- 分数显示区 -->
+        <div class="score-board">
+            <div class="score-item">
+                <span class="score-label">当前分数</span>
+                <span class="score-value" id="current-score">0</span>
+            </div>
+            <div class="score-item">
+                <span class="score-label">最高分数</span>
+                <span class="score-value" id="high-score">0</span>
+            </div>
+        </div>
+
+        <!-- 游戏主界面 -->
+        <div class="game-area">
+            <canvas id="game-canvas"></canvas>
+            
+            <!-- 欢迎界面 -->
+            <div class="overlay welcome-screen" id="welcome-screen">
+                <div class="overlay-content">
+                    <h2>🎮 欢迎来到贪吃蛇</h2>
+                    <p>使用键盘方向键控制蛇的移动</p>
+                    <p>吃到食物可以增加分数和长度</p>
+                    <p>小心不要撞到墙壁或自己的身体！</p>
+                    <button class="btn btn-primary" id="welcome-start-btn">开始游戏</button>
+                </div>
+            </div>
+
+            <!-- 游戏结束界面 -->
+            <div class="overlay game-over-screen hidden" id="game-over-screen">
+                <div class="overlay-content">
+                    <h2>💀 游戏结束</h2>
+                    <p class="final-score">最终分数: <span id="final-score">0</span></p>
+                    <p class="final-length">蛇的长度: <span id="final-length">0</span></p>
+                    <button class="btn btn-primary" id="restart-btn">重新开始</button>
+                </div>
+            </div>
+
+            <!-- 暂停提示 -->
+            <div class="overlay pause-screen hidden" id="pause-screen">
+                <div class="overlay-content">
+                    <h2>⏸️ 游戏已暂停</h2>
+                    <p>按空格键或点击继续按钮恢复游戏</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 控制按钮 -->
+        <div class="control-buttons">
+            <button class="btn btn-start" id="start-btn">开始</button>
+            <button class="btn btn-pause" id="pause-btn" disabled>暂停</button>
+            <button class="btn btn-reset" id="reset-btn">重新开始</button>
+        </div>
+
+        <!-- 游戏规则说明 -->
+        <div class="game-rules">
+            <h3>📋 游戏规则</h3>
+            <ul>
+                <li>🎯 使用 <kbd>↑</kbd> <kbd>↓</kbd> <kbd>←</kbd> <kbd>→</kbd> 方向键控制蛇的移动</li>
+                <li>🍎 吃到红色食物得 10 分，吃到金色食物得 20 分</li>
+                <li>📈 每吃一个食物，蛇的速度会略微增加</li>
+                <li>💥 撞到墙壁或自己的身体游戏结束</li>
+                <li>⏸️ 按空格键可以暂停/继续游戏</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 引入 JavaScript 文件 -->
+    <script src="js/config.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/snake.js"></script>
+    <script src="js/food.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

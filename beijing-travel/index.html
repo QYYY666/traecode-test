@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>成都→北京 5天4晚春节攻略（经典+美食 · 3-4人家庭）</title>
+<style>
+/* ========== 基础与变量（皇城红金主题） ========== */
+:root{
+  --ink:#1f2937;
+  --ink-soft:#3f3a33;
+  --muted:#7a7468;
+  --line:#e7e1d6;
+  --paper:#ffffff;
+  --bg:#f7f5f0;
+  --red:#b5222e;          /* 宫墙红 */
+  --red-deep:#8f1d26;
+  --red-soft:#faedeb;
+  --gold:#d97706;         /* 琉璃金 */
+  --gold-soft:#fdf3e3;
+  --night:#7f1d1d;
+  --blue:#1d4ed8;
+  --free:#15803d;
+  --shadow:0 2px 12px rgba(63,58,51,.08);
+  --radius:14px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;
+}
+a{color:var(--red-deep);text-decoration:none;}
+img{display:block;max-width:100%;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px;}
+
+/* ========== 顶部导航 ========== */
+.topnav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.topnav .wrap{display:flex;align-items:center;gap:18px;height:52px;overflow-x:auto;}
+.brand{font-weight:700;color:var(--red-deep);white-space:nowrap;font-size:15px;}
+.topnav nav{display:flex;gap:14px;margin-left:auto;white-space:nowrap;}
+.topnav nav a{color:var(--muted);font-size:13.5px;}
+.topnav nav a:hover{color:var(--red);}
+.btn-print{border:none;cursor:pointer;background:var(--red);color:#fff;padding:7px 16px;border-radius:999px;font-size:13px;white-space:nowrap;}
+.btn-print:hover{background:var(--red-deep);}
+
+/* ========== 头部封面 ========== */
+.hero{background:linear-gradient(135deg,#b5222e 0%,#8f1d26 55%,#6f1619 100%);color:#fff;padding:46px 0 40px;}
+.hero .wrap{display:grid;grid-template-columns:1.6fr 1fr;gap:34px;align-items:center;}
+.hero .kicker{display:inline-block;font-size:12.5px;letter-spacing:2px;background:rgba(255,255,255,.16);padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:34px;line-height:1.3;margin-bottom:12px;}
+.hero p.sub{font-size:15px;opacity:.94;margin-bottom:20px;}
+.hero-stats{display:flex;flex-wrap:wrap;gap:10px;}
+.hero-stats span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:999px;font-size:13px;}
+.weather-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.28);border-radius:var(--radius);padding:18px 20px;}
+.weather-card h3{font-size:14px;font-weight:600;margin-bottom:10px;opacity:.95;}
+.w-row{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-bottom:1px dashed rgba(255,255,255,.25);font-size:13.5px;}
+.w-row:last-child{border-bottom:none;}
+.w-row b{font-weight:600;}
+.weather-note{margin-top:10px;font-size:12px;opacity:.84;line-height:1.6;}
+
+/* ========== 通用区块 ========== */
+section{padding:42px 0 8px;}
+.sec-title{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.sec-title h2{font-size:23px;color:var(--ink);}
+.sec-title .ico{width:38px;height:38px;border-radius:11px;background:var(--red-soft);color:var(--red-deep);display:grid;place-items:center;font-size:19px;flex:none;}
+.sec-desc{color:var(--muted);font-size:13.5px;margin-bottom:22px;}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+/* ========== 自绘 SVG 路线地图 ========== */
+.map-card{padding:20px 20px 12px;}
+.map-svg{width:100%;height:auto;}
+.map-legend{display:flex;flex-wrap:wrap;gap:16px;padding:12px 6px 4px;font-size:12.5px;color:var(--muted);}
+.map-legend span{display:inline-flex;align-items:center;gap:6px;}
+.lg-line{width:26px;height:0;border-top:3px solid var(--red);display:inline-block;}
+.lg-night{border-top:3px dashed var(--red-deep);}
+.lg-gold{border-top:3px solid var(--gold);}
+.lg-bus{border-top:2px dashed var(--muted);}
+.lg-dot{width:11px;height:11px;border-radius:50%;background:var(--red);display:inline-block;}
+.lg-dot.opt{background:#fff;border:2px solid var(--muted);}
+.map-node{cursor:pointer;}
+.map-node circle{fill:#fff;stroke:var(--red);stroke-width:2.5;transition:transform .15s;transform-origin:center;transform-box:fill-box;}
+.map-node:hover circle{transform:scale(1.25);stroke:var(--gold);}
+.map-node text{font-size:11.5px;fill:var(--ink);font-weight:600;paint-order:stroke;stroke:#fff;stroke-width:3.5px;stroke-linejoin:round;}
+.map-node .sub{font-size:9.5px;fill:var(--muted);font-weight:400;}
+.node-home circle{fill:var(--night)!important;stroke:var(--night)!important;}
+.node-home text{fill:var(--night);}
+.node-out circle{fill:#f3f4f6;stroke:var(--muted);}
+.node-out text{fill:var(--muted);}
+.day-badge{fill:var(--gold);font-size:10px;font-weight:700;}
+.route-label{font-size:10.5px;fill:var(--ink-soft);paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;font-weight:600;}
+.map-tip{font-size:12px;color:var(--muted);padding:2px 6px 8px;}
+
+/* ========== 每日概览 ========== */
+.overview-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
+.ov-item{padding:16px 12px;text-align:center;transition:transform .15s;}
+.ov-item:hover{transform:translateY(-3px);border-color:var(--red);}
+.ov-num{width:34px;height:34px;margin:0 auto 8px;border-radius:50%;background:var(--red-soft);color:var(--red-deep);display:grid;place-items:center;font-weight:700;font-size:14px;}
+.ov-item h4{font-size:13.5px;margin-bottom:5px;}
+.ov-item p{font-size:12px;color:var(--muted);line-height:1.5;}
+.ov-item .ov-ico{font-size:20px;display:block;margin-bottom:5px;}
+
+/* ========== 每日详情 ========== */
+.day{padding:0;margin-bottom:26px;overflow:hidden;}
+.day-head{display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,var(--red-soft),#fff 72%);}
+.day-badge-lg{flex:none;width:54px;height:54px;border-radius:15px;background:var(--red);color:#fff;display:grid;place-items:center;text-align:center;line-height:1.15;font-weight:700;}
+.day-badge-lg small{display:block;font-size:10px;font-weight:400;opacity:.85;}
+.day-badge-lg b{font-size:19px;}
+.day-head h3{font-size:18px;}
+.day-head .tags{display:flex;flex-wrap:wrap;gap:7px;margin-left:auto;}
+.tag{font-size:12px;padding:3px 11px;border-radius:999px;background:#f3f4f6;color:var(--ink-soft);white-space:nowrap;}
+.tag.city{background:var(--red-soft);color:var(--red-deep);}
+.tag.free{background:#e8f5ec;color:var(--free);}
+.tag.move{background:var(--gold-soft);color:var(--gold);}
+.day-body{display:grid;grid-template-columns:1.9fr 1fr;}
+.timeline{list-style:none;padding:18px 22px;border-right:1px solid var(--line);}
+.tl-item{display:grid;grid-template-columns:58px 30px 1fr;gap:10px;padding:9px 0;border-bottom:1px dashed var(--line);}
+.tl-item:last-child{border-bottom:none;}
+.tl-time{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;padding-top:2px;}
+.tl-ico{font-size:16px;text-align:center;padding-top:1px;}
+.tl-main h4{font-size:14.5px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.tl-main p{font-size:13px;color:var(--muted);}
+.cost{font-size:11px;background:var(--gold-soft);color:var(--gold);padding:1px 8px;border-radius:999px;font-weight:600;}
+.cost.zero{background:#e8f5ec;color:var(--free);}
+.day-side{padding:18px 20px;display:flex;flex-direction:column;gap:14px;background:#fbfaf7;}
+.side-box h4{font-size:13.5px;margin-bottom:7px;display:flex;align-items:center;gap:6px;}
+.side-box p,.side-box li{font-size:12.8px;color:var(--ink-soft);}
+.side-box ul{padding-left:18px;}
+.side-box li{margin-bottom:3px;}
+.amap-btn{display:inline-block;margin-top:6px;font-size:12.5px;padding:6px 14px;border-radius:8px;background:var(--red);color:#fff;text-align:center;}
+.amap-btn:hover{background:var(--red-deep);}
+.amap-btn.alt{background:#fff;color:var(--red-deep);border:1px solid var(--red);}
+/* 景点图片卡 */
+.spot-strip{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:16px 22px 20px;border-top:1px solid var(--line);}
+.spot{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff;display:flex;}
+.spot-img{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#f3d9d5,#f6ebe6);display:grid;place-items:center;color:var(--red-deep);font-size:40px;flex:1;}
+.spot-img.img-fallback{background:linear-gradient(135deg,#e3e9f2,#eef1f5);color:var(--blue);}
+.spot-img img{width:100%;height:100%;object-fit:cover;}
+.spot:nth-child(even){flex-direction:row-reverse;}
+.spot-info{padding:12px 14px;flex:1;}
+.spot-info h5{font-size:14px;margin-bottom:3px;}
+.spot-info p{font-size:12px;color:var(--muted);line-height:1.5;}
+.spot-fee{font-size:11.5px;color:var(--free);font-weight:600;}
+
+/* ========== 表格 ========== */
+.tbl-card{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px;}
+th,td{padding:11px 16px;text-align:left;border-bottom:1px solid var(--line);}
+th{background:#faf8f4;font-weight:600;color:var(--ink-soft);font-size:13px;white-space:nowrap;}
+tbody tr:last-child td{border-bottom:none;}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;}
+.tbl-note{padding:10px 16px 14px;font-size:12.3px;color:var(--muted);}
+
+/* ========== 信息卡 ========== */
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.info-card{padding:20px 22px;}
+.info-card h3{font-size:16px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.info-card ul{list-style:none;}
+.info-card li{font-size:13.3px;padding:7px 0 7px 22px;position:relative;border-bottom:1px dashed var(--line);color:var(--ink-soft);}
+.info-card li:last-child{border-bottom:none;}
+.info-card li::before{content:"▸";position:absolute;left:4px;color:var(--red);font-size:12px;}
+.info-card li b{color:var(--ink);}
+.price-tag{color:var(--gold);font-weight:600;}
+
+/* ========== 美食 ========== */
+.food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.food-card{padding:20px 22px;}
+.food-card .city-ico{font-size:22px;}
+.food-card h3{font-size:16.5px;margin:6px 0 4px;}
+.food-card .where{font-size:12px;color:var(--muted);margin-bottom:12px;}
+.food-item{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:13.2px;}
+.food-item:last-child{border-bottom:none;}
+.food-item em{font-style:normal;color:var(--muted);font-size:12px;white-space:nowrap;}
+
+/* ========== 预算 ========== */
+.budget-modes{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.mode-btn{border:1.5px solid var(--line);background:#fff;cursor:pointer;padding:9px 20px;border-radius:999px;font-size:13.5px;color:var(--muted);}
+.mode-btn.active{border-color:var(--red);background:var(--red-soft);color:var(--red-deep);font-weight:600;}
+.budget-card{padding:22px 24px;}
+.budget-total{display:flex;flex-wrap:wrap;gap:26px;align-items:baseline;margin-top:16px;padding-top:16px;border-top:2px solid var(--red-soft);}
+.budget-total .big{font-size:30px;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;}
+.budget-total .two{font-size:15px;color:var(--ink-soft);}
+.budget-total .hint{font-size:12.5px;color:var(--muted);}
+
+/* ========== 穿衣 ========== */
+.wear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.wear-card{padding:20px;}
+.wear-card h3{font-size:15.5px;margin-bottom:6px;}
+.wear-card .temp{font-size:13px;color:var(--red);font-weight:600;margin-bottom:10px;}
+.wear-card li{font-size:13px;padding:5px 0 5px 20px;list-style:none;}
+.checklist{columns:2;gap:24px;padding:20px 24px;}
+.checklist li{font-size:13.5px;list-style:none;padding:5px 0 5px 26px;position:relative;break-inside:avoid;}
+.checklist li::before{content:"☐";position:absolute;left:2px;color:var(--red);font-size:15px;}
+
+/* ========== 紧急/避坑 ========== */
+.sos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.sos-item{padding:16px;text-align:center;}
+.sos-item .n{font-size:20px;font-weight:800;color:var(--red);letter-spacing:1px;}
+.sos-item .t{font-size:12.8px;color:var(--ink-soft);margin-top:3px;}
+.trap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+.trap-item{padding:16px 18px;display:flex;gap:12px;}
+.trap-item .x{color:#dc2626;font-weight:800;flex:none;}
+.trap-item h4{font-size:14px;margin-bottom:3px;}
+.trap-item p{font-size:12.8px;color:var(--muted);}
+
+/* ========== 页脚 ========== */
+footer{margin-top:40px;padding:26px 0 40px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px;text-align:center;}
+
+/* ========== 响应式 ========== */
+@media (max-width:960px){
+  .hero .wrap{grid-template-columns:1fr;}
+  .overview-grid{grid-template-columns:repeat(3,1fr);}
+  .day-body{grid-template-columns:1fr;}
+  .timeline{border-right:none;border-bottom:1px solid var(--line);}
+  .spot-strip{grid-template-columns:1fr;}
+  .info-grid,.food-grid,.wear-grid{grid-template-columns:1fr;}
+  .sos-grid{grid-template-columns:repeat(2,1fr);}
+  .trap-grid{grid-template-columns:1fr;}
+  .checklist{columns:1;}
+}
+@media (max-width:560px){
+  .overview-grid{grid-template-columns:repeat(2,1fr);}
+  .hero h1{font-size:26px;}
+  .day-head{flex-wrap:wrap;}
+  .day-head .tags{margin-left:0;}
+}
+
+/* ========== 打印 ========== */
+@media print{
+  body{background:#fff;font-size:11.5px;}
+  .topnav,.btn-print,.no-print{display:none!important;}
+  .hero{background:#fff!important;color:#000!important;padding:18px 0;border-bottom:2px solid #000;}
+  .hero .wrap{grid-template-columns:1fr;gap:14px;}
+  .hero .kicker,.hero-stats span,.weather-card{background:#fff!important;color:#000!important;border:1px solid #888!important;}
+  .weather-note,.hero p.sub{color:#333!important;}
+  .card,.ov-item,.spot,.info-card,.food-card,.wear-card,.sos-item,.trap-item,.mode-btn{box-shadow:none!important;break-inside:avoid;}
+  .day,.map-card,.budget-card{break-inside:avoid;}
+  section{padding:16px 0 0;}
+  .day-side{background:#fff!important;}
+  th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  a{color:#000;text-decoration:underline;}
+  @page{margin:12mm;}
+}
+</style>
+</head>
+<body>
+
+<!-- 顶部导航（打印隐藏） -->
+<div class="topnav no-print">
+  <div class="wrap">
+    <span class="brand">🏮 北京春节行</span>
+    <nav>
+      <a href="#map">路线图</a>
+      <a href="#overview">每日概览</a>
+      <a href="#detail">详细行程</a>
+      <a href="#transport">交通</a>
+      <a href="#stay">酒店</a>
+      <a href="#food">美食</a>
+      <a href="#budget">预算</a>
+      <a href="#wear">穿衣</a>
+      <a href="#tips">实用信息</a>
+    </nav>
+    <button class="btn-print" onclick="window.print()">🖨️ 打印 / 存PDF</button>
+  </div>
+</div>
+
+<!-- 封面：标题 + 气候 -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="kicker">SPRING FESTIVAL · 皇城红</span>
+      <h1>成都 → 北京<br>5天4晚春节经典 + 美食攻略</h1>
+      <p class="sub">2027年2月6日（正月初一）前后 · 3-4人家庭同行 · 故宫长城颐和园全覆盖 · 烤鸭涮肉胡同小吃一路吃 · 人均约 ¥3100–5000</p>
+      <div class="hero-stats">
+        <span>🗓️ 2/6（初一）– 2/10（初五）</span>
+        <span>👨‍👩‍👧 3-4人家庭最划算</span>
+        <span>🚄 高铁约7.5h · 动卧夕发朝至</span>
+        <span>🏛️ 故宫/国博须提前7天抢票</span>
+        <span>💰 推荐人均 ≈ ¥4100</span>
+      </div>
+    </div>
+    <div class="weather-card">
+      <h3>🌨️ 北京春节气候参考</h3>
+      <div class="w-row"><span>白天</span><b>晴到多云　约 0~5℃</b></div>
+      <div class="w-row"><span>夜间</span><b>约 -6~0℃（体感更冷）</b></div>
+      <div class="w-row"><span>天气特点</span><b>干燥多大风 · 偶有霾</b></div>
+      <p class="weather-note">北京冬季干冷，室内暖气充足（20℃+）。出门穿羽绒服、戴帽围巾手套，室内外温差大建议“外厚内薄”方便穿脱。此为历年1-2月气候参考，实际天气请出行前3天查阅正式预报。</p>
+    </div>
+  </div>
+</header>
+
+<!-- 自绘路线地图 -->
+<section id="map" class="wrap">
+  <div class="sec-title"><span class="ico">🗺️</span><h2>全程路线示意图（真实方位）</h2></div>
+  <p class="sec-desc">按高德真实经纬度投影。点击任意节点可唤起<strong>高德地图 APP</strong> 导航；八达岭长城在市区西北方向，已单独标注。</p>
+  <div class="card map-card">
+    <svg class="map-svg" viewBox="0 0 960 560" role="img" aria-label="北京5日游路线图">
+      <!-- 路线层 -->
+      <!-- 去程：成都→北京 -->
+      <path d="M52,292 C 120,320 220,360 300,388" fill="none" stroke="#8f1d26" stroke-width="3" stroke-dasharray="9 6"/>
+      <!-- D2 中轴线 -->
+      <path d="M302,389 L 535,366 L 519,331 L 531,300 L 527,261" fill="none" stroke="#b5222e" stroke-width="2.6"/>
+      <!-- D3 长城（向北出城）+ 鸟巢夜景 -->
+      <path d="M527,261 C 400,120 250,70 108,50" fill="none" stroke="#b5222e" stroke-width="2.4" stroke-dasharray="6 5"/>
+      <line x1="520" y1="250" x2="528" y2="114" stroke="#d97706" stroke-width="2.4"/>
+      <!-- D4 园林→胡同（西→东） -->
+      <path d="M160,90 C 320,60 460,180 527,261 M 528,260 C 560,252 580,246 594,239 M 548,268 L 551,271" fill="none" stroke="#b5222e" stroke-width="2.4"/>
+      <!-- D5 天坛→前门→返程 -->
+      <path d="M575,426 L 535,381 L 302,389 M 302,389 C 200,368 120,330 52,292" fill="none" stroke="#b5222e" stroke-width="2.4"/>
+
+      <!-- 天数角标 -->
+      <g><circle cx="180" cy="330" r="11" class="day-badge"/><text x="180" y="334" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D1</text></g>
+      <g><circle cx="510" cy="312" r="11" class="day-badge"/><text x="510" y="316" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D2</text></g>
+      <g><circle cx="320" cy="90" r="11" class="day-badge"/><text x="320" y="94" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D3</text></g>
+      <g><circle cx="520" cy="180" r="11" class="day-badge"/><text x="520" y="184" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D4</text></g>
+      <g><circle cx="500" cy="400" r="11" class="day-badge"/><text x="500" y="404" text-anchor="middle" fill="#fff" font-size="10" font-weight="700">D5</text></g>
+
+      <!-- 路线标签 -->
+      <text x="150" y="345" class="route-label">D1 高铁/动卧 抵京</text>
+      <text x="500" y="322" class="route-label">D2 天安门→故宫→景山</text>
+      <text x="250" y="95" class="route-label">D3 清河高铁→八达岭长城→鸟巢</text>
+      <text x="330" y="120" class="route-label" fill="#8f1d26">D4 颐和园→胡同→雍和宫</text>
+      <text x="480" y="410" class="route-label">D5 天坛→前门→返程</text>
+
+      <!-- 节点：成都（家） -->
+      <a class="map-node node-home" target="_blank" href="https://uri.amap.com/marker?position=104.066301,30.572961&name=成都&coordinate=gaode&callnative=1">
+        <circle cx="50" cy="292" r="8.5"/>
+        <text x="50" y="276" text-anchor="middle">成都·家</text>
+      </a>
+      <!-- 北京西站 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.322033,39.894912&name=北京西站&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="302" cy="389" r="7"/>
+        <text x="302" y="412" text-anchor="middle">北京西站</text>
+      </a>
+      <!-- 天安门 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.397755,39.903182&name=天安门广场&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="535" cy="366" r="7.5"/>
+        <text x="535" y="388" text-anchor="middle">天安门广场</text>
+      </a>
+      <!-- 故宫 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.392773,39.914836&name=故宫博物院&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="519" cy="331" r="8"/>
+        <text x="519" y="316" text-anchor="middle">故宫博物院</text>
+      </a>
+      <!-- 景山 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.396551,39.925875&name=景山公园&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="531" cy="300" r="6.5"/>
+        <text x="506" y="292" text-anchor="end">景山公园</text>
+      </a>
+      <!-- 王府井 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.411104,39.916917&name=王府井&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="576" cy="326" r="7"/>
+        <text x="588" y="318">王府井</text>
+      </a>
+      <!-- 鸟巢 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.395615,39.991619&name=国家体育场鸟巢&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="528" cy="113" r="7"/>
+        <text x="556" y="104">鸟巢·水立方</text>
+      </a>
+      <!-- 八达岭长城（出城） -->
+      <a class="map-node node-out" target="_blank" href="https://uri.amap.com/route?to=116.016802,40.356188&name=八达岭长城&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="106" cy="48" r="8"/>
+        <text x="106" y="34" text-anchor="middle">八达岭长城</text>
+        <text x="106" y="64" text-anchor="middle" class="sub">西北·清河站乘高铁</text>
+      </a>
+      <!-- 颐和园 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.275179,39.999617&name=颐和园&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="158" cy="90" r="8"/>
+        <text x="158" y="74" text-anchor="middle">颐和园</text>
+      </a>
+      <!-- 什刹海 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.395411,39.939538&name=什刹海&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="527" cy="261" r="7"/>
+        <text x="527" y="244" text-anchor="middle">什刹海</text>
+      </a>
+      <!-- 南锣鼓巷 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.403145,39.936302&name=南锣鼓巷&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="551" cy="271" r="6.5"/>
+        <text x="512" y="252" text-anchor="end">南锣鼓巷</text>
+      </a>
+      <!-- 雍和宫 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.417296,39.947239&name=雍和宫&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="595" cy="239" r="7"/>
+        <text x="618" y="236">雍和宫</text>
+      </a>
+      <!-- 前门大街 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.398022,39.897549&name=前门大街&mode=walk&coordinate=gaode&callnative=1">
+        <circle cx="535" cy="381" r="6.5"/>
+        <text x="500" y="388" text-anchor="end">前门大街</text>
+      </a>
+      <!-- 天坛 -->
+      <a class="map-node" target="_blank" href="https://uri.amap.com/route?to=116.410829,39.881913&name=天坛公园&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="575" cy="426" r="7.5"/>
+        <text x="575" y="450" text-anchor="middle">天坛公园</text>
+      </a>
+      <!-- 798 -->
+      <a class="map-node node-out" target="_blank" href="https://uri.amap.com/route?to=116.495027,39.983285&name=798艺术区&mode=bus&coordinate=gaode&callnative=1">
+        <circle cx="834" cy="136" r="6.5"/>
+        <text x="816" y="128" text-anchor="end">798艺术区（可选）</text>
+      </a>
+    </svg>
+    <div class="map-legend no-print">
+      <span><i class="lg-line lg-night"></i>高铁/动卧往返</span>
+      <span><i class="lg-line"></i>地铁/步行串联</span>
+      <span><i class="lg-line lg-gold"></i>夜游</span>
+      <span><i class="lg-dot"></i>行程节点（可点击导航）</span>
+      <span><i class="lg-dot opt"></i>出城/可选</span>
+    </div>
+    <p class="map-tip">💡 手机点击节点唤起高德 APP；电脑打开高德网页版。八达岭长城建议从<b>清河站</b>乘京张高铁约20分钟直达（比自驾/大巴省时，春节需提前购票）。</p>
+  </div>
+</section>
+
+<!-- 每日概览 -->
+<section id="overview" class="wrap">
+  <div class="sec-title"><span class="ico">📅</span><h2>5天每日概览</h2></div>
+  <p class="sec-desc">中轴线 → 长城奥运 → 园林胡同 → 天坛返程，一天一片区，少折返。</p>
+  <div class="overview-grid">
+    <a class="card ov-item" href="#day1"><span class="ov-num">D1</span><span class="ov-ico">🚄</span><h4>2/6 初一</h4><p>成都抵京<br>前门·大栅栏夜游</p></a>
+    <a class="card ov-item" href="#day2"><span class="ov-num">D2</span><span class="ov-ico">🏛️</span><h4>2/7 初二</h4><p>天安门→故宫<br>→景山→王府井</p></a>
+    <a class="card ov-item" href="#day3"><span class="ov-num">D3</span><span class="ov-ico">🧱</span><h4>2/8 初三</h4><p>八达岭长城<br>夜游鸟巢水立方</p></a>
+    <a class="card ov-item" href="#day4"><span class="ov-num">D4</span><span class="ov-ico">🏯</span><h4>2/9 初四</h4><p>颐和园→什刹海<br>→南锣→雍和宫</p></a>
+    <a class="card ov-item" href="#day5"><span class="ov-num">D5</span><span class="ov-ico">🏠</span><h4>2/10 初五</h4><p>天坛→前门<br>返程回成都</p></a>
+  </div>
+</section>
+
+<!-- 详细行程 -->
+<section id="detail" class="wrap">
+  <div class="sec-title"><span class="ico">🧭</span><h2>每日详细时间表</h2></div>
+  <p class="sec-desc">时间为<i>建议节奏</i>；费用按【成人每人】标价，<span class="cost zero">免费</span>即零元。故宫/国博等需提前预约，详见“实用信息”。</p>
+
+  <!-- D1 -->
+  <div class="card day" id="day1">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>1</b></div>
+      <div><h3>2月6日（正月初一）· 成都 → 北京 · 前门夜游</h3></div>
+      <div class="tags"><span class="tag move">🚄 交通日</span><span class="tag">前门小吃</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">建议行程</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>成都东 → 北京西 高铁 <span class="cost">二等座¥762–887</span></h4><p>最快 G322（06:56–14:26，约7.5h）或 G970（10:56–20:20）。3-4人家庭可早点出发，下午到京直接办入住。</p></div></li>
+        <li class="tl-item"><span class="tl-time">省钱备选</span><span class="tl-ico">🛏️</span><div class="tl-main"><h4>动卧夕发朝至（省一晚房费）<span class="cost">动卧约¥598</span></h4><p>D966/D968 成都东 19:28 → 次日 06:47 北京丰台，卧铺睡一觉即到，含一晚交通+住宿，适合抢不到白天票或想多留白天时间的家庭。</p></div></li>
+        <li class="tl-item"><span class="tl-time">15:30</span><span class="tl-ico">🏨</span><div class="tl-main"><h4>入住酒店（前门/崇文门片区）</h4><p>放行李休息，地铁+步行可达各景点。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:30</span><span class="tl-ico">🥘</span><div class="tl-main"><h4>晚餐：护国寺小吃 / 老北京小吃拼盘 <span class="cost">¥40–60</span></h4><p>豆汁焦圈、驴打滚、豌豆黄、艾窝窝、炒肝、糖葫芦，一次尝遍老北京风味。</p></div></li>
+        <li class="tl-item"><span class="tl-time">19:00</span><span class="tl-ico">🏮</span><div class="tl-main"><h4>前门大街 · 大栅栏 · 鲜鱼口夜市 <span class="cost zero">免费</span></h4><p>正阳门牌楼下看京味夜景，逛老字号（内联升、瑞蚨祥、张一元）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">21:00</span><span class="tl-ico">🛌</span><div class="tl-main"><h4>回酒店休息</h4><p>早睡，明早天安门+故宫行程较长。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🥛 当天吃什么</h4><ul><li>晚：护国寺/前门老北京小吃 ¥50</li><li>推荐：豆汁焦圈、驴打滚、艾窝窝、炒肝</li></ul></div>
+        <div class="side-box"><h4>🏨 住宿</h4><p>前门 / 崇文门 / 灯市口地铁沿线，去天安门故宫步行或1-2站地铁。</p></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>春节部分胡同店关门，吃饭先查营业</li><li>市内交通用“支付宝出行”北京地铁码</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=116.398022,39.897549&name=前门大街&mode=walk&coordinate=gaode&callnative=1">📍 高德导航：前门大街</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🏮<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Qianmen%20Street%20Beijing%20red%20lanterns%20old%20shops%20traditional%20Chinese%20architecture%20winter%20evening%20photography&image_size=landscape_16_9" alt="前门大街" onerror="this.remove()"></div><div class="spot-info"><h5>前门大街</h5><p>正阳门下京味夜景与老字号一条街</p><span class="spot-fee">免费</span></div></div>
+      <div class="spot"><div class="spot-img">🥘<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=old%20Beijing%20snacks%20Lvdagun%20Wandouhuang%20sugar%20gourd%20winter%20street%20food%20photography&image_size=landscape_16_9" alt="老北京小吃" onerror="this.remove()"></div><div class="spot-info"><h5>老北京小吃</h5><p>豆汁焦圈、驴打滚、糖葫芦</p><span class="spot-fee">人均¥50</span></div></div>
+    </div>
+  </div>
+
+  <!-- D2 -->
+  <div class="card day" id="day2">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>2</b></div>
+      <div><h3>2月7日（正月初二）· 中轴线经典一日</h3></div>
+      <div class="tags"><span class="tag city">核心区</span><span class="tag">约2万步</span><span class="tag">需提前预约</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">07:30</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>早餐：炒肝儿包子 / 糖油饼豆浆 <span class="cost">¥15–20</span></h4><p>推荐天兴居（前门鲜鱼口）、姚记炒肝（鼓楼）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">08:30</span><span class="tl-ico">🏛️</span><div class="tl-main"><h4>天安门广场（外观+升旗/拍照）<span class="cost zero">免费 · 需预约</span></h4><p>参观人民英雄纪念碑、远望天安门城楼；带身份证，天安门广场需提前9天小程序预约。</p></div></li>
+        <li class="tl-item"><span class="tl-time">09:30</span><span class="tl-ico">🏯</span><div class="tl-main"><h4>故宫博物院（约4h）<span class="cost">淡季¥40/人</span></h4><p>午门入 → 太和殿 → 乾清宫 → 御花园 → 神武门出。珍宝馆/钟表馆各¥10（值得一看）。18岁以下免票须预约。</p></div></li>
+        <li class="tl-item"><span class="tl-time">13:30</span><span class="tl-ico">🍽️</span><div class="tl-main"><h4>午餐：故宫周边/景山后街 <span class="cost">¥40–60</span></h4><p>故宫内餐饮偏贵，出神武门到景山后街找老北京面馆或护国寺小吃。</p></div></li>
+        <li class="tl-item"><span class="tl-time">14:30</span><span class="tl-ico">🌄</span><div class="tl-main"><h4>景山公园（万春亭俯瞰故宫全景）<span class="cost">¥2</span></h4><p>登万春亭中轴线制高点，俯瞰紫禁城红墙黄瓦全景，经典机位。</p></div></li>
+        <li class="tl-item"><span class="tl-time">16:00</span><span class="tl-ico">🛍️</span><div class="tl-main"><h4>王府井步行街（可逛百货大楼）<span class="cost zero">免费</span></h4><p>东来顺、护国寺分店都在附近；老北京风情街、王府井购书中心。</p></div></li>
+        <li class="tl-item"><span class="tl-time">18:00</span><span class="tl-ico">🍲</span><div class="tl-main"><h4>晚餐：铜锅涮肉（东来顺/南门涮肉）<span class="cost">¥80–120/人</span></h4><p>手切鲜羊肉、麻酱蘸料、糖蒜是灵魂。人均偏贵，是本次“东北亚美食放纵餐”。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍲 当天吃什么</h4><ul><li>早：炒肝包子 ¥18</li><li>午：景山后街面馆 ¥50</li><li>晚：铜锅涮肉 ¥100</li></ul></div>
+        <div class="side-box"><h4>🎫 预约重点</h4><ul><li>故宫提前7天20:00放票，春节秒空必抢</li><li>天安门广场提前约，安检严格</li><li>随身带身份证，实名入园</li></ul></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>故宫半日走中线精华，腿力不够可下次再看东西六宫</li><li>景山万春亭拍全景别错过</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=116.392773,39.914836&name=故宫博物院&mode=walk&coordinate=gaode&callnative=1">📍 高德导航：故宫博物院</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🏯<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Forbidden%20City%20Beijing%20red%20walls%20golden%20roofs%20imperial%20palace%20winter%20photography&image_size=landscape_16_9" alt="故宫博物院" onerror="this.remove()"></div><div class="spot-info"><h5>故宫博物院</h5><p>世界最大皇家宫殿群，红线中轴线</p><span class="spot-fee">淡季¥40</span></div></div>
+      <div class="spot"><div class="spot-img">🌄<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Jingshan%20Park%20Beijing%20Wanchun%20Pavilion%20overlooking%20Forbidden%20City%20winter%20photography&image_size=landscape_16_9" alt="景山公园" onerror="this.remove()"></div><div class="spot-info"><h5>景山公园</h5><p>万春亭俯瞰紫禁城最佳机位</p><span class="spot-fee">¥2</span></div></div>
+    </div>
+  </div>
+
+  <!-- D3 -->
+  <div class="card day" id="day3">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>3</b></div>
+      <div><h3>2月8日（正月初三）· 八达岭长城 + 奥运夜色</h3></div>
+      <div class="tags"><span class="tag city">延庆·朝阳</span><span class="tag move">高铁游长城</span><span class="tag free">鸟巢外观免费</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">07:00</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>早餐：豆腐脑+油条/馄饨 <span class="cost">¥12–18</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>清河站乘京张高铁 → 八达岭长城站 <span class="cost">¥14–20/约20分钟</span></h4><p>节假日班次多，比大巴/自驾快且不堵，车票需提前买。</p></div></li>
+        <li class="tl-item"><span class="tl-time">08:40</span><span class="tl-ico">🧱</span><div class="tl-main"><h4>八达岭长城（约3.5h）<span class="cost">淡季¥35/人</span></h4><p>北线较陡、视野好；带老人小孩可选南线或乘缆车（往返¥140，可选）。春节山顶风大极冷，务必穿厚。</p></div></li>
+        <li class="tl-item"><span class="tl-time">12:30</span><span class="tl-ico">🍽️</span><div class="tl-main"><h4>午餐：长城景区简餐或自带干粮 <span class="cost">¥40–60</span></h4><p>景区餐饮偏贵、选择少，建议背水和干粮，下山再好好吃。</p></div></li>
+        <li class="tl-item"><span class="tl-time">14:00</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>高铁返回清河站 → 市区</h4><p>约20分钟回城，下午可先回酒店补觉。</p></div></li>
+        <li class="tl-item"><span class="tl-time">16:30</span><span class="tl-ico">🛍️</span><div class="tl-main"><h4>奥林匹克公园（鸟巢·水立方）<span class="cost zero">外观免费</span></h4><p>傍晚到，看鸟巢水立方在暮色与灯光中变幻，拍照绝佳。</p></div></li>
+        <li class="tl-item"><span class="tl-time">18:30</span><span class="tl-ico">🍲</span><div class="tl-main"><h4>晚餐：烤鸭（四季民福/便宜坊/全聚德）<span class="cost">¥100–150/人</span></h4><p>北京烤鸭是家庭必尝，半只+荷叶饼卷鸭肉黄瓜条甜面酱。烤鸭店春节火爆需排号。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍲 当天吃什么</h4><ul><li>午：自带干粮 ¥30</li><li>晚：北京烤鸭 ¥120</li></ul></div>
+        <div class="side-box"><h4>🎫 长城购票</h4><ul><li>八达岭公众号/小程序提前预约门票</li><li>清河→八达岭高铁票春节紧俏，先抢车票再买门票</li></ul></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>长城风大，围巾口罩帽子全上</li><li>登长城穿防滑鞋，部分台阶陡</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=116.016802,40.356188&name=八达岭长城&mode=bus&coordinate=gaode&callnative=1">📍 高德导航：八达岭长城</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🧱<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Badaling%20Great%20Wall%20Beijing%20snow%20winter%20grand%20panorama%20photography&image_size=landscape_16_9" alt="八达岭长城" onerror="this.remove()"></div><div class="spot-info"><h5>八达岭长城</h5><p>冬季雪中长城气势磅礴</p><span class="spot-fee">淡季¥35</span></div></div>
+      <div class="spot"><div class="spot-img">🕊️<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Beijing%20National%20Stadium%20Birds%20Nest%20Water%20Cube%20night%20lights%20winter%20photography&image_size=landscape_16_9" alt="鸟巢水立方" onerror="this.remove()"></div><div class="spot-info"><h5>鸟巢·水立方</h5><p>奥运场馆夜灯，拍照打卡圣地</p><span class="spot-fee">外观免费</span></div></div>
+    </div>
+  </div>
+
+  <!-- D4 -->
+  <div class="card day" id="day4">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>4</b></div>
+      <div><h3>2月9日（正月初四）· 皇家园林 + 胡同慢游</h3></div>
+      <div class="tags"><span class="tag city">海淀·西城</span><span class="tag free">胡同免费</span><span class="tag">约1.5万步</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>早餐 <span class="cost">¥15</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">09:00</span><span class="tl-ico">🚇</span><div class="tl-main"><h4>地铁4号线 → 北宫门站 <span class="cost">约¥5</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">09:30</span><span class="tl-ico">🏯</span><div class="tl-main"><h4>颐和园（约3h）<span class="cost">淡季¥20/人</span></h4><p>昆明湖结冰、十七孔桥“金光穿洞”冬日限定。北宫门进，沿长廊走西堤，佛香阁远眺。冬天有的码头关闭。</p></div></li>
+        <li class="tl-item"><span class="tl-time">12:30</span><span class="tl-ico">🍽️</span><div class="tl-main"><h4>午餐：颐和园附近/海淀 <span class="cost">¥40–60</span></h4></div></li>
+        <li class="tl-item"><span class="tl-time">14:00</span><span class="tl-ico">🚇</span><div class="tl-main"><h4>返回什刹海（地铁4号线换乘）</h4></div></li>
+        <li class="tl-item"><span class="tl-time">15:00</span><span class="tl-ico">⛸️</span><div class="tl-main"><h4>什刹海·后海（冬日冰场）<span class="cost zero">观景免费；滑冰另计</span></h4><p>体验老北京胡同烟火气，结冰的后海是天然滑冰场（春节可体验冰车，约¥60-80/人）。</p></div></li>
+        <li class="tl-item"><span class="tl-time">16:30</span><span class="tl-ico">🏘️</span><div class="tl-main"><h4>南锣鼓巷 → 五道营胡同 <span class="cost zero">免费</span></h4><p>逛胡同小店、猫空书店；五道营更安静文青。春节部分店关门，感受氛围为主。</p></div></li>
+        <li class="tl-item"><span class="tl-time">17:30</span><span class="tl-ico">🛕</span><div class="tl-main"><h4>雍和宫（新春祈福）<span class="cost">¥25/人</span></h4><p>北京最大藏传佛教寺庙，春节烧香祈福人气极旺。</p></div></li>
+        <li class="tl-item"><span class="tl-time">19:00</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>晚餐：老北京炸酱面 + 卤煮火烧 <span class="cost">¥30–50</span></h4><p>海碗居/方砖厂69号吃炸酱面；门框胡同百年卤煮、小肠陈吃卤煮。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍜 当天吃什么</h4><ul><li>午：颐和园周边 ¥50</li><li>晚：炸酱面+卤煮 ¥40</li></ul></div>
+        <div class="side-box"><h4>🎫 预约</h4><ul><li>颐和园公众号提前购票</li><li>雍和宫春节祈福人多，早去排队</li></ul></div>
+        <div class="side-box"><h4>💡 贴士</h4><ul><li>什刹海冰面安全听从现场管理</li><li>胡同道路窄，穿好走的鞋</li></ul></div>
+        <a class="amap-btn" target="_blank" href="https://uri.amap.com/route?to=116.275179,39.999617&name=颐和园&mode=bus&coordinate=gaode&callnative=1">📍 高德导航：颐和园</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🏯<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Summer%20Palace%20Beijing%20Kunming%20Lake%20Seventeen%20Arch%20Bridge%20winter%20photography&image_size=landscape_16_9" alt="颐和园" onerror="this.remove()"></div><div class="spot-info"><h5>颐和园</h5><p>昆明湖冬日十七孔桥“金光穿洞”</p><span class="spot-fee">淡季¥20</span></div></div>
+      <div class="spot"><div class="spot-img">⛸️<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Shichahai%20Beijing%20frozen%20lake%20ice%20skating%20Hutong%20winter%20photography&image_size=landscape_16_9" alt="什刹海" onerror="this.remove()"></div><div class="spot-info"><h5>什刹海·后海</h5><p>冬日冰场与胡同烟火</p><span class="spot-fee">观景免费</span></div></div>
+    </div>
+  </div>
+
+  <!-- D5 -->
+  <div class="card day" id="day5">
+    <div class="day-head">
+      <div class="day-badge-lg"><small>DAY</small><b>5</b></div>
+      <div><h3>2月10日（正月初五）· 天坛祈福 · 返程</h3></div>
+      <div class="tags"><span class="tag city">东城</span><span class="tag move">返程日</span><span class="tag">牛街美食</span></div>
+    </div>
+    <div class="day-body">
+      <ul class="timeline">
+        <li class="tl-item"><span class="tl-time">08:00</span><span class="tl-ico">🍜</span><div class="tl-main"><h4>早餐：牛街小吃 <span class="cost">¥30</span></h4><p>白记年糕、奶酪魏、洪记小吃、聚宝源早点，回民街美食天堂。</p></div></li>
+        <li class="tl-item"><span class="tl-time">09:00</span><span class="tl-ico">🏯</span><div class="tl-main"><h4>天坛公园（约2.5h）<span class="cost">联票淡季约¥28/人</span></h4><p>祈年殿、回音壁、圜丘。天坛是北京最上镜的古建筑之一，蓝天红墙蓝瓦。</p></div></li>
+        <li class="tl-item"><span class="tl-time">11:30</span><span class="tl-ico">🍽️</span><div class="tl-main"><h4>午餐：南门涮肉（天坛店）/ 牛街 <span class="cost">¥70–100</span></h4><p>天坛南门外的南门涮肉总店，铜锅涮肉性价比口碑俱佳；或回牛街吃。</p></div></li>
+        <li class="tl-item"><span class="tl-time">13:30</span><span class="tl-ico">🛍️</span><div class="tl-main"><h4>前门购伴手礼（吴裕泰/张一元茶叶、稻香村点心）<span class="cost">¥60–100</span></h4><p>三禾稻香村（认准“三禾”标）点心、张一元茉莉花茶是地道伴手礼。</p></div></li>
+        <li class="tl-item"><span class="tl-time">15:00</span><span class="tl-ico">🚄</span><div class="tl-main"><h4>返程：北京西 → 成都东 <span class="cost">高铁¥762–887 / 动卧¥598</span></h4><p>高铁约7.5h当晚到家；或乘19:28动卧次日抵蓉（省房费+白天利用）。</p></div></li>
+      </ul>
+      <div class="day-side">
+        <div class="side-box"><h4>🍜 当天吃什么</h4><ul><li>早：牛街小吃 ¥30</li><li>午：南门涮肉 ¥85</li></ul></div>
+        <div class="side-box"><h4>🎫 预约</h4><ul><li>天坛公众号提前购票，联票含祈年殿回音壁</li></ul></div>
+        <div class="side-box"><h4>✈️ 想当天到家？</h4><p>也可北京直飞成都（大兴/首都机场，约3h，机票约¥500-900），比高铁省时。</p></div>
+        <a class="amap-btn alt" target="_blank" href="https://uri.amap.com/route?to=116.410829,39.881913&name=天坛公园&mode=bus&coordinate=gaode&callnative=1">📍 高德导航：天坛公园</a>
+      </div>
+    </div>
+    <div class="spot-strip">
+      <div class="spot"><div class="spot-img">🏯<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Temple%20of%20Heaven%20Beijing%20Hall%20of%20Prayer%20for%20Good%20Harvests%20blue%20roof%20winter%20photography&image_size=landscape_16_9" alt="天坛公园" onerror="this.remove()"></div><div class="spot-info"><h5>天坛公园</h5><p>祈年殿红墙蓝瓦，北京最上镜古建</p><span class="spot-fee">联票约¥28</span></div></div>
+      <div class="spot"><div class="spot-img">🥮<img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=Chinese%20pastries%20rosy%20boxes%20tea%20Beijing%20souvenir%20winter%20photography&image_size=landscape_16_9" alt="伴手礼" onerror="this.remove()"></div><div class="spot-info"><h5>地道伴手礼</h5><p>三禾稻香村点心、张一元茉莉花茶</p><span class="spot-fee">¥60起</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 交通信息 -->
+<section id="transport" class="wrap">
+  <div class="sec-title"><span class="ico">🚄</span><h2>交通信息（成都 ⇄ 北京）</h2></div>
+  <p class="sec-desc">车次票价为 2026年10月查询参考，春节需提前开售即抢＋候补。成都主要从<strong>成都东站</strong>发车，抵京多为<strong>北京西站/北京丰台站</strong>。</p>
+  <div class="card tbl-card">
+    <table>
+      <thead><tr><th>方式</th><th>车次/航线</th><th>时刻（示例）</th><th>历时</th><th>票价/人</th></tr></thead>
+      <tbody>
+        <tr><td class="num">高铁最快</td><td>G322（成都东→北京西）</td><td class="num">06:56 – 14:26</td><td class="num">7h30m</td><td class="num">二等座¥887（部分¥791/794）</td></tr>
+        <tr><td class="num">高铁夜间到达</td><td>G970（成都东→北京西）</td><td class="num">10:56 – 20:20</td><td class="num">9h24m</td><td class="num">二等座¥794</td></tr>
+        <tr><td class="num">动卧夕发朝至</td><td>D966/D968（成都东→北京丰台）</td><td class="num">19:28 – 次日06:47/06:55</td><td class="num">约11h</td><td class="num">动卧约¥598（省1晚房费）</td></tr>
+        <tr><td class="num">普速最省</td><td>K546/K118（成都西/东→北京）</td><td class="num">过夜/白天</td><td class="num">约32h</td><td class="num">硬卧¥456 / 硬座¥251</td></tr>
+        <tr><td class="num">飞机</td><td>成都⇄北京大兴/首都</td><td class="num">全天多班</td><td class="num">约3h</td><td class="num">约¥500–900（春节高峰上浮）</td></tr>
+      </tbody>
+    </table>
+    <p class="tbl-note">家庭建议：去程选<strong>动卧夕发朝至</strong>（省一晚房费+白天时间），返程视体力选高铁或飞机。大交通往返按人均约 <b>¥1200–1800</b> 预算。</p>
+  </div>
+
+  <div class="info-grid" style="margin-top:16px;">
+    <div class="card info-card">
+      <h3>🚇 北京市内</h3>
+      <ul>
+        <li>地铁起步 <b>¥3</b>，四通八达覆盖所有主力景点</li>
+        <li>用“支付宝出行”北京地铁码扫码乘车</li>
+        <li>去长城：清河站京张高铁约20分钟<b>¥14-20</b></li>
+        <li>大兴机场线：草桥→大兴机场<b>¥35</b></li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>🚌 枢纽换乘</h3>
+      <ul>
+        <li>北京西站：地铁7/9号线</li>
+        <li>北京丰台站：地铁10/16号线</li>
+        <li>北京南站：地铁4/14号线</li>
+        <li>大兴机场：大兴机场线+10号线进市区</li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>🚗 家庭打车建议</h3>
+      <ul>
+        <li>高峰期市区堵，优先地铁</li>
+        <li>3-4人打车用“高德/滴滴”，起步¥13</li>
+        <li>景点间近距离滴滴比地铁更快更划算</li>
+        <li>警惕景区门口“包车一日游”黑司机</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 住宿信息 -->
+<section id="stay" class="wrap">
+  <div class="sec-title"><span class="ico">🏨</span><h2>周边酒店怎么选（家庭出行）</h2></div>
+  <p class="sec-desc">3-4人家庭优先订<strong>家庭房/亲子房</strong>或1间套房，比开2间标间更划算。春节酒店价上浮，提前20天以上订并选“免费取消”。</p>
+  <div class="info-grid">
+    <div class="card info-card">
+      <h3>📍 前门 / 崇文门（首选）</h3>
+      <ul>
+        <li>优势：天安门故宫步行可达，美食多</li>
+        <li>经济连锁：<span class="price-tag">¥400–600/晚</span></li>
+        <li>中档/家庭房：<span class="price-tag">¥600–900/晚</span></li>
+        <li>代表：前门东大街、鲜鱼口片区</li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>📍 灯市口 / 东单</h3>
+      <ul>
+        <li>优势：王府井与故宫之间，地铁1/5号线</li>
+        <li>经济连锁：<span class="price-tag">¥450–650/晚</span></li>
+        <li>中档：<span class="price-tag">¥650–950/晚</span></li>
+        <li>代表：灯市口大街、东单银街</li>
+      </ul>
+    </div>
+    <div class="card info-card">
+      <h3>📍 牛街 / 西单</h3>
+      <ul>
+        <li>优势：牛街美食近在咫尺，近天坛</li>
+        <li>经济连锁：<span class="price-tag">¥380–550/晚</span></li>
+        <li>中档：<span class="price-tag">¥550–800/晚</span></li>
+        <li>代表：牛街、菜市口、西单宣武门</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 美食 -->
+<section id="food" class="wrap">
+  <div class="sec-title"><span class="ico">🍜</span><h2>吃什么（老字号 + 胡同小吃）</h2></div>
+  <p class="sec-desc">原则：<strong>老字号认准招牌、小吃去牛街/护国寺、烤鸭涮肉错峰用餐</strong>。</p>
+  <div class="food-grid">
+    <div class="card food-card">
+      <span class="city-ico">🦆</span><h3>硬菜必尝</h3>
+      <p class="where">烤鸭 · 涮肉 · 年味</p>
+      <div class="food-item"><span>北京烤鸭（半只起）</span><em>¥100–150/人</em></div>
+      <div class="food-item"><span>铜锅涮肉（手切鲜羊）</span><em>¥80–120/人</em></div>
+      <div class="food-item"><span>溜肝尖/京酱肉丝</span><em>¥40–60</em></div>
+      <div class="food-item"><span>干炸丸子/爆三样</span><em>¥35–50</em></div>
+      <div class="food-item"><span>推荐：四季民福、便宜坊、东来顺、南门涮肉</span><em>—</em></div>
+    </div>
+    <div class="card food-card">
+      <span class="city-ico">🥟</span><h3>市井小吃</h3>
+      <p class="where">牛街 · 护国寺 · 前门 · 鼓楼</p>
+      <div class="food-item"><span>老北京炸酱面</span><em>¥20–30</em></div>
+      <div class="food-item"><span>卤煮火烧/炒肝+包子</span><em>¥25–40</em></div>
+      <div class="food-item"><span>爆肚（爆肚冯/金生隆）</span><em>¥40–60</em></div>
+      <div class="food-item"><span>豆汁焦圈/驴打滚/豌豆黄</span><em>¥5–15</em></div>
+      <div class="food-item"><span>艾窝窝/糖葫芦/碗糕</span><em>¥5–15</em></div>
+      <div class="food-item"><span>推荐：牛街白记、护国寺小吃、门框胡同百年卤煮</span><em>—</em></div>
+    </div>
+    <div class="card food-card">
+      <span class="city-ico">🧧</span><h3>春节限定</h3>
+      <p class="where">年夜饭 · 年货 · 庙会</p>
+      <div class="food-item"><span>饺子（初五“破五”吃饺子）</span><em>¥30–60</em></div>
+      <div class="food-item"><span>年糕/糖瓜/江米条</span><em>¥10–30</em></div>
+      <div class="food-item"><span>庙会小吃（地坛/龙潭湖庙会）</span><em>¥50–80</em></div>
+      <div class="food-item"><span>春饼/春卷</span><em>¥20–40</em></div>
+      <div class="food-item"><span>⚠️ 大年初一部分老字号闭店，提前查营业</span><em>—</em></div>
+    </div>
+  </div>
+</section>
+
+<!-- 预算 -->
+<section id="budget" class="wrap">
+  <div class="sec-title"><span class="ico">💰</span><h2>预算明细（按人计算）</h2></div>
+  <p class="sec-desc">点击切换三档；价格为春节参考，住宿越早订越便宜，机票/高铁越早抢越省。</p>
+  <div class="budget-modes no-print">
+    <button class="mode-btn" data-mode="s">🪙 省钱档（动卧+经济酒店）</button>
+    <button class="mode-btn active" data-mode="m">⭐ 家庭推荐档</button>
+    <button class="mode-btn" data-mode="c">🛏️ 舒适档（含烤鸭涮肉）</button>
+  </div>
+  <div class="card budget-card">
+    <div class="tbl-card">
+      <table>
+        <thead><tr><th>项目</th><th>明细</th><th>金额/人</th></tr></thead>
+        <tbody id="budget-body">
+          <tr><td>🚄 大交通</td><td id="transport-desc">成都⇄北京高铁/动卧往返</td><td class="num" id="b-transport">¥1500</td></tr>
+          <tr><td>🚇 市内交通</td><td>地铁+公交+长城高铁，全程约</td><td class="num" id="b-local">¥100</td></tr>
+          <tr><td>🏨 住宿</td><td id="stay-desc">4晚家庭房人均（3人分摊约1间/4人2间）</td><td class="num" id="b-stay">¥1400</td></tr>
+          <tr><td>🍜 餐饮</td><td id="food-desc">约¥100/人/天 × 5天，含2顿烤鸭/涮肉</td><td class="num" id="b-food">¥500</td></tr>
+          <tr><td>🎫 门票</td><td id="ticket-desc">故宫40+长城35+颐和园20+天坛28+景山2+雍和宫25</td><td class="num" id="b-ticket">¥150</td></tr>
+          <tr><td>🎒 其他</td><td id="other-desc">伴手礼、干粮水、滑冰等可选消费</td><td class="num" id="b-other">¥200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="budget-total">
+      <div>每人合计 <span class="big" id="budget-per">¥3,850</span></div>
+      <div class="two">3人约 <b id="budget-3">¥11,550</b> ｜ 4人约 <b id="budget-4">¥15,400</b></div>
+      <div class="hint" id="budget-hint">不含个人购物；春节机票/酒店上浮明显，建议提前锁价。</div>
+    </div>
+  </div>
+</section>
+
+<!-- 穿衣 -->
+<section id="wear" class="wrap">
+  <div class="sec-title"><span class="ico">🧥</span><h2>春节穿衣指南（干冷 + 室内暖气）</h2></div>
+  <p class="sec-desc">北京冬季“室外干冷、室内暖足”，最好的策略是<strong>外厚内薄</strong>、便于穿脱。</p>
+  <div class="wear-grid">
+    <div class="card wear-card">
+      <h3>🧥 外套（必备）</h3>
+      <p class="temp">长款羽绒服 / 加厚棉服</p>
+      <ul>
+        <li>长款羽绒服防风保暖，首选</li>
+        <li>冲锋衣外套（抗风）</li>
+        <li>内搭毛衣/加绒卫衣</li>
+      </ul>
+    </div>
+    <div class="card wear-card">
+      <h3>🧣 配件（保暖关键）</h3>
+      <p class="temp">帽子·围巾·手套·耳罩</p>
+      <ul>
+        <li>毛线帽/耳罩（护头护耳）</li>
+        <li>围巾、手套（户外逛长城必备）</li>
+        <li>加绒裤 / 保暖打底裤</li>
+      </ul>
+    </div>
+    <div class="card wear-card">
+      <h3>👟 鞋履 + 护肤</h3>
+      <p class="temp">防滑保暖鞋 + 保湿</p>
+      <ul>
+        <li>防滑保暖运动鞋（路可能结冰）</li>
+        <li>加厚棉袜</li>
+        <li>润唇膏、护手霜、面霜（干燥）</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3 style="padding:18px 24px 4px;font-size:15.5px;">🎒 行李清单（打勾用）</h3>
+    <ul class="checklist">
+      <li>身份证（购票/入园/酒店必备）</li>
+      <li>学生证 / 老人证（门票半价或免票）</li>
+      <li>羽绒服 + 加绒内搭</li>
+      <li>毛线帽、围巾、手套、耳罩</li>
+      <li>防滑保暖运动鞋 + 加厚袜</li>
+      <li>润唇膏、护手霜、保湿面霜</li>
+      <li>保温杯（天冷喝热水暖身）</li>
+      <li>充电宝（≤100Wh，高铁飞机可带）</li>
+      <li>常用药：感冒药、肠胃药、创可贴</li>
+      <li>暖宝宝/暖贴（户外逛长城神器）</li>
+      <li>干粮零食（长城、高铁上吃）</li>
+      <li>少量现金（¥200应急）</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 实用信息 -->
+<section id="tips" class="wrap">
+  <div class="sec-title"><span class="ico">📞</span><h2>预约购买 & 避坑指南</h2></div>
+
+  <div class="card tbl-card" style="margin-bottom:22px;">
+    <table>
+      <thead><tr><th>景点</th><th>春节门票</th><th>预约渠道/提前</th><th>备注</th></tr></thead>
+      <tbody>
+        <tr><td>故宫博物院</td><td class="num">淡季¥40</td><td>“故宫博物院”小程序 · 提前7天20:00</td><td>周一闭馆（法定节假日除外），18岁以下免票须预约</td></tr>
+        <tr><td>天安门广场</td><td class="num">免费</td><td>“天安门广场预约”小程序 · 提前9天</td><td>安检严格，带身份证</td></tr>
+        <tr><td>八达岭长城</td><td class="num">淡季¥35</td><td>八达岭长城公众号 · 提前10天</td><td>清河站高铁约20分钟直达</td></tr>
+        <tr><td>国家博物馆</td><td class="num">免费</td><td>“国家博物馆”小程序 · 提前7天17:00</td><td>春节热门，可选看看馆藏</td></tr>
+        <tr><td>颐和园 / 天坛</td><td class="num">¥20 / ¥28</td><td>各自公众号提前购票</td><td>天坛买联票含祈年殿</td></tr>
+        <tr><td>雍和宫 / 恭王府</td><td class="num">¥25 / ¥40</td><td>公众号提前购票</td><td>雍和宫春节祈福人气旺</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sos-grid" style="margin-bottom:22px;">
+    <div class="card sos-item"><div class="n">110</div><div class="t">报警</div></div>
+    <div class="card sos-item"><div class="n">119</div><div class="t">火警</div></div>
+    <div class="card sos-item"><div class="n">120</div><div class="t">急救</div></div>
+    <div class="card sos-item"><div class="n">12345</div><div class="t">政务/旅游投诉</div></div>
+    <div class="card sos-item"><div class="n">12306</div><div class="t">铁路客服</div></div>
+    <div class="card sos-item"><div class="n">12328</div><div class="t">交通服务监督</div></div>
+    <div class="card sos-item"><div class="n">400-950-1925</div><div class="t">故宫客服</div></div>
+    <div class="card sos-item"><div class="n">010-12345</div><div class="t">北京市政务热线</div></div>
+  </div>
+
+  <div class="trap-grid">
+    <div class="card trap-item"><span class="x">✕</span><div><h4>故宫黄牛票/代抢</h4><p>故宫仅官方小程序售票，未授权任何第三方；别买加价“黄牛票”，抢不到就候补或换行程。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>低价“长城一日游”</h4><p>路边“几十元长城一日游”多为购物团（去水关长城/野长城）；认准官方八达岭+清河高铁直达。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>黑三轮胡同游乱收费</h4><p>什刹海/南锣三轮车揽客含糊收费，先问清价格再坐；胡同步行免费自游更自在。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>景区旁“烤鸭”宰客店</h4><p>烤鸭认准老字号（全聚德/便宜坊/四季民福/大董），景区周边“真空烤鸭”多为游客价。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>“玉器茶叶”购物点</h4><p>一日游带去的玉器翡翠茶叶店水深，不冲动消费；伴手礼去稻香村、张一元、超市买。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>火车站门口黑车</h4><p>北京西/南站出口黑车乱喊价，坚持地铁或官方出租车/网约车平台。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>春节闭店不自查</h4><p>初一初二部分胡同小店、老字号闭店，用餐前地图App查“营业中”再出发。</p></div></div>
+    <div class="card trap-item"><span class="x">✕</span><div><h4>天气低估准备不足</h4><p>北京干冷多风，长城风更大，羽绒服+围巾手套缺一不可；暖宝宝备足。</p></div></div>
+  </div>
+</section>
+
+<footer>
+  <p>本攻略由高德地图 MCP 实时坐标 + 公开票价（去哪儿/12306，2026-10 查询）＋故宫/北京本地宝门票公告整理，价格与时刻仅供出行参考，请以官方平台当日信息为准。</p>
+  <p style="margin-top:6px;">新春愉快，玩得尽兴还省心 🏮🧧🍜</p>
+</footer>
+
+<script>
+// 预算三档数据（元/人）
+var BUDGET_DATA = {
+  s: { // 省钱：动卧往返 + 经济酒店 + 少硬菜
+    transport:1200, local:100, stay:1000, food:400, ticket:150, other:150,
+    transportDesc:'去程动卧¥598 + 返程高铁¥762（或双动卧¥1196更省）',
+    stayDesc:'4晚经济连锁家庭房人均（¥250/晚）',
+    foodDesc:'约¥80/人/天，小吃为主，1顿烤鸭或涮肉',
+    ticketDesc:'故宫40+长城35+颐和园20+天坛28+景山2+雍和宫25',
+    otherDesc:'基础伴手礼、水、干粮',
+    hint:'省钱档：动卧夕发朝至省1晚房费，吃饭以小吃+1顿硬菜为主。'
+  },
+  m: { // 推荐：高铁 + 中档酒店 + 2顿硬菜
+    transport:1500, local:100, stay:1400, food:500, ticket:150, other:200,
+    transportDesc:'往返高铁二等座（¥762–887 × 2）',
+    stayDesc:'4晚中档家庭房/亲子房人均（¥350/晚）',
+    foodDesc:'约¥100/人/天 × 5天，含烤鸭+涮肉各1顿',
+    ticketDesc:'故宫40+长城35+颐和园20+天坛28+景山2+雍和宫25',
+    otherDesc:'伴手礼、滑冰、干粮水',
+    hint:'推荐档：家庭舒适平衡，餐饮含烤鸭、涮肉两顿特色在北京吃得更尽兴。'
+  },
+  c: { // 舒适：住宿升级 + 顿顿特色餐
+    transport:1700, local:120, stay:1800, food:1000, ticket:250, other:300,
+    transportDesc:'高铁往返（早班快车）或去高铁+回程飞机',
+    stayDesc:'4晚品质酒店/公寓家庭房人均（¥450/晚）',
+    foodDesc:'约¥200/人/天，烤鸭、涮肉、老字号换着吃',
+    ticketDesc:'在主线基础上加恭王府40、什刹海滑冰等',
+    otherDesc:'伴手礼、照片、应急备用',
+    hint:'舒适档：住宿更近核心区，特色餐想吃就吃，适合带长辈的团圆之旅。'
+  }
+};
+
+function formatMoney(num){
+  return '¥' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+function switchBudgetMode(mode){
+  var d = BUDGET_DATA[mode];
+  document.getElementById('b-transport').textContent = formatMoney(d.transport);
+  document.getElementById('b-local').textContent = formatMoney(d.local);
+  document.getElementById('b-stay').textContent = formatMoney(d.stay);
+  document.getElementById('b-food').textContent = formatMoney(d.food);
+  document.getElementById('b-ticket').textContent = formatMoney(d.ticket);
+  document.getElementById('b-other').textContent = formatMoney(d.other);
+  document.getElementById('transport-desc').textContent = d.transportDesc;
+  document.getElementById('stay-desc').textContent = d.stayDesc;
+  document.getElementById('food-desc').textContent = d.foodDesc;
+  document.getElementById('ticket-desc').textContent = d.ticketDesc;
+  document.getElementById('other-desc').textContent = d.otherDesc;
+  var total = d.transport + d.local + d.stay + d.food + d.ticket + d.other;
+  document.getElementById('budget-per').textContent = formatMoney(total);
+  document.getElementById('budget-3').textContent = formatMoney(total * 3);
+  document.getElementById('budget-4').textContent = formatMoney(total * 4);
+  document.getElementById('budget-hint').textContent = d.hint;
+}
+
+document.querySelectorAll('.mode-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.mode-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+    switchBudgetMode(btn.getAttribute('data-mode'));
+  });
+});
+
+// 图片加载失败时降级为 emoji + 渐变底
+document.querySelectorAll('.spot-img img').forEach(function(img){
+  img.addEventListener('error', function(){
+    img.remove();
+    img.parentElement.classList.add('img-fallback');
+  });
+});
+</script>
+</body>
+</html>
